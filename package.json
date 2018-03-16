@@ -1,0 +1,29 @@
+{
+  "name": "meta-client",
+  "version": "0.0.0-c26",
+  "description": "Meta.js (Client)",
+  "homepage": "https://metajs.org",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/florianmaxim/meta.git"
+  },
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "npm run build",
+    "build:docs": "documentation build src/** --shallow -f html -o docs",
+    "build": "npx babel src --out-dir lib --no-comments --minified",
+    "prepublish": "npm run build"
+  },
+  "author": "Florian Maxim",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "documentation": "^6.1.0",
+    "npx": "^10.0.1"
+  },
+  "dependencies": {
+    "oimo": "^1.0.9",
+    "three": "^0.91.0"
+  }
+}
