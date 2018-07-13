@@ -100,7 +100,7 @@ npm run build && npm run start
 ```script
 git clone https://github.com/florianmaxim/meta
 npm install
-npm run build && npm start
+npm run build
 ```
 
 # 📕 Wiki
