@@ -26,6 +26,22 @@ Furthermore this is an attempt to create the most accessible virtual reality lib
 * 🚀 One code for any device (HTC Vive, Oculus Rift, Desktop, Smartphone, etc.).
 * 🏰 Grab a cube now, move a castle soon!
 
+# 💐 Example
+
+<a href="https://metajs.org" target="blank"><img src="https://media.giphy.com/media/3o7aCWDuzxsESrbmcE/giphy.gif" /></a>
+
+This example is written in three lines that can't be anymore intuitive.
+
+```javascript
+
+import {Ground, Cube, on} from 'meta-client';
+
+new Ground();
+
+on('touch', (data) => new Cube().set(data.position));
+
+```
+
 #  👩‍🚀 Usage
 
 ### Start within minutes (via Parcel-Bundler):
@@ -64,47 +80,13 @@ parcel index.html
 ```  
 8. Open http://localhost:1234/ in your browser.
 
-<a href="https://metajs.org" target="blank"><img src="https://media.giphy.com/media/3o7aCWDuzxsESrbmcE/giphy.gif" /></a>
-
-This example is written in three lines that can't be more intuitive.
-
-```javascript
-
-import {Ground, Cube, on} from 'meta-client';
-
-new Ground();
-
-on('touch', (data) => new Cube().set(data.position));
-
-```
-
-# 📕 Wiki
-
-[Read the Wiki to learn how to use Meta.js.](https://github.com/florianmaxim/meta/wiki) 
-
-# 📚 Docs
-
-[Read the full code documentation.](https://florianmaxim.github.io/Meta)
-
-# 💬 Slack
-
-Join the [Slack channel](https://metajsorg.slack.com) to talk about space in Virtual Reality.
+This is the example from above.
 
 # 🎉 Installation
 
 ### 🤖 Requirements
 
 Meta.js requires Node.js (https://nodejs.org).
-
-### Quick (Using [Meta-Kit](https://github.com/cheesyeyes/meta-kit)):
-
-```script
-git clone https://github.com/florianmaxim/meta-kit .
-npm install
-npm run build && npm start
-```
-
-Open your browser and visit "localhost:5000".
 
 ### Via NPM
 
@@ -120,6 +102,19 @@ git clone https://github.com/florianmaxim/meta
 npm install
 npm run build && npm start
 ```
+
+# 📕 Wiki
+
+[Read the Wiki to learn how to use Meta.js.](https://github.com/florianmaxim/meta/wiki) 
+
+# 📚 Docs
+
+[Read the full code documentation.](https://florianmaxim.github.io/Meta)
+
+# 💬 Slack
+
+Join the [Slack channel](https://metajsorg.slack.com) to talk about space in Virtual Reality.
+
 # Packages
 
 |                                             meta-client                                            |                                             meta-console                                             |
