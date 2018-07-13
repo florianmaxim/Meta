@@ -225,7 +225,7 @@ As any other software this is based on thousands of layers of programming abstra
 I probably learned most about space from
 [<b>Walter Lewin</b>](https://www.youtube.com/watch?v=GtOGurrUPmQ "Walter Lewin").
 
-I probably learned most about Toys from [<b>Julian Summer Miller</b>](https://www.youtube.com/watch?v=F6uYDUPn4oM "Julian Summer Miller").
+I probably learned most about toys from [<b>Julian Summer Miller</b>](https://www.youtube.com/watch?v=F6uYDUPn4oM "Julian Summer Miller").
 
 That's basically what brought me here.
 
