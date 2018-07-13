@@ -44,7 +44,7 @@ on('touch', (data) => new Cube().set(data.position));
 
 #  👩‍🚀 Usage
 
-### Start within minutes (via Parcel-Bundler):
+### Start within 3 minutes (via Parcel-Bundler):
 
 1. Create a new directory and enter it.
 ```script
