@@ -82,20 +82,7 @@ parcel index.html
 ```  
 Open http://localhost:1234/ in your browser.
 
-# 🎉 Installation
-
-### 🤖 Requirements
-
-Meta.js requires Node.js (https://nodejs.org).
-
-### Via NPM
-
-```script
-npm install meta-client
-npm install
-npm run build && npm run start
-```
-### Custom
+# 🎉 Custom
 
 ```script
 git clone https://github.com/florianmaxim/meta
