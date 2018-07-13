@@ -38,7 +38,7 @@ mkdir meta && cd meta
 ```script
 npm init && npm install parcel-bundler meta-client
 ```
-3. Create a index.html and a index.js file.
+3. Create a <i>index.html</i> and a <i>index.js</i> file.
 ```script
 touch index.html index.js
 ```
