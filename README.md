@@ -46,6 +46,8 @@ on('touch', (data) => new Cube().set(data.position));
 
 ### Start within 3 minutes (via Parcel-Bundler):
 
+You need to have Node.js (https://nodejs.org) installed.
+
 1. Create a new directory and enter it.
 ```script
 mkdir meta && cd meta
@@ -78,9 +80,7 @@ on('touch', (data) => new Cube().set(data.position));
 ```script
 parcel index.html
 ```  
-
 Open http://localhost:1234/ in your browser.
-
 
 # 🎉 Installation
 
