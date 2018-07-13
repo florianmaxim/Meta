@@ -78,9 +78,9 @@ on('touch', (data) => new Cube().set(data.position));
 ```script
 parcel index.html
 ```  
-8. Open http://localhost:1234/ in your browser.
 
-This is the example from above.
+Open http://localhost:1234/ in your browser.
+
 
 # 🎉 Installation
 
