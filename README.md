@@ -51,7 +51,7 @@ touch index.html index.js
 </html>
 ```
 6. Add the following into index.js.
-```script
+```javascript
 import {Ground, Cube, on} from 'meta-client';
 
 new Ground();
