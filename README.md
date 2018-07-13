@@ -76,7 +76,7 @@ new Ground();
 
 on('touch', (data) => new Cube().set(data.position));
 ```  
-7. Start your VR space:
+7. Start:
 ```script
 parcel index.html
 ```  
