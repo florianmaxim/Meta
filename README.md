@@ -28,9 +28,9 @@ Furthermore this is an attempt to create the most accessible virtual reality lib
 
 # 💐 Example
 
-<a href="https://metajs.org" target="blank"><img src="https://media.giphy.com/media/3o7aCWDuzxsESrbmcE/giphy.gif" /></a>
-
 This example is written in three lines that can't be anymore intuitive.
+
+<a href="https://metajs.org" target="blank"><img src="https://media.giphy.com/media/3o7aCWDuzxsESrbmcE/giphy.gif" /></a>
 
 ```javascript
 
