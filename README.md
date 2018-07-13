@@ -20,13 +20,56 @@ Furthermore this is an attempt to create the most accessible virtual reality lib
 
 # 🎊 Features
 
-* 🏖 Learn how to use code virtual (reality) space in minutes.
+* 🏖 Learn how to create and use code virtual (reality) space in minutes.
 * 💐 Code Virtual Reality like its the year you live in.
 * 🤹🏻 Write in the language you know with the tools you love.
 * 🚀 One code for any device (HTC Vive, Oculus Rift, Desktop, Smartphone, etc.).
 * 🏰 Grab a cube now, move a castle soon!
 
 #  👩‍🚀 Usage
+
+Start in three minutes (via Parcel-Bundler):
+
+1. Create a new directory and enter it.
+```script
+mkdir meta && cd meta
+```
+2. Initialize a npm repository.
+```script
+npm init
+```
+2. Install Parcel-Bundler and Meta.
+```script
+npm install parcel-bundler meta-client
+```
+3. Create a index.html and a index.js file.
+```script
+touch index.html index.js
+```
+5. Add the following into index.html.
+```script
+<html>
+<body>
+  <script src="./index.js"></script>
+</body>
+</html>
+```
+6. Add the following into index.js.
+```script
+import {Ground, Cube, on} from 'meta-client';
+
+new Ground();
+
+on('touch', (data) => new Cube().set(data.position));
+```  
+7. Start your VR space:
+```script
+parcel index.html
+```  
+8. Enter your VR space:
+```script
+Open http://localhost:1234/ in your browser.
+``` 
 
 <a href="https://metajs.org" target="blank"><img src="https://media.giphy.com/media/3o7aCWDuzxsESrbmcE/giphy.gif" /></a>
 
