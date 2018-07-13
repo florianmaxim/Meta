@@ -34,13 +34,9 @@ Start in three minutes (via Parcel-Bundler):
 ```script
 mkdir meta && cd meta
 ```
-2. Initialize a npm repository.
+2. Initialize a npm repository and install Parcel-Bundler and Meta.
 ```script
-npm init
-```
-2. Install Parcel-Bundler and Meta.
-```script
-npm install parcel-bundler meta-client
+npm init && npm install parcel-bundler meta-client
 ```
 3. Create a index.html and a index.js file.
 ```script
