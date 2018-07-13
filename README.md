@@ -20,11 +20,11 @@ Furthermore this is an attempt to create the most accessible virtual reality lib
 
 # 🎊 Features
 
-* 🏖 Learn how to use code virtual (reality) space in minutes
-* 💐 Code Virtual Reality like its the year you live in
-* 🤹🏻 Write in the language you know with the tools you love
+* 🏖 Learn how to use code virtual (reality) space in minutes.
+* 💐 Code Virtual Reality like its the year you live in.
+* 🤹🏻 Write in the language you know with the tools you love.
 * 🚀 One code for any device (HTC Vive, Oculus Rift, Desktop, Smartphone, etc.).
-* 🏰 Grab a cube now, move a castle soon<
+* 🏰 Grab a cube now, move a castle soon!
 
 #  👩‍🚀 Usage
 
