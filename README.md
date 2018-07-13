@@ -113,7 +113,7 @@ npm run build && npm start
 
 # 💬 Slack
 
-Join the [Slack channel](https://metajsorg.slack.com) to talk about space in Virtual Reality.
+Join the [Slack channel](https://metajsorg.slack.com) to talk about (virtual) space.
 
 # Packages
 
