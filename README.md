@@ -9,11 +9,11 @@
 # Meta.js 👩‍🚀
 ## Javascript Library For Virtual Reality 🚀
 
-# [![Latest NPM release][npm-badge]][npm-badge-url] [![Build Status](https://travis-ci.org/florianmaxim/Meta.svg?branch=master)](https://travis-ci.org/florianmaxim/Meta) [![Dependencies][dependencies-badge]][dependencies-badge-url] [![https://metajs.org](https://img.shields.io/badge/metajs.org-online-green.svg)](https://metajs.org) [![https://metajs.org](https://img.shields.io/badge/twitter-metajs_org-blue.svg)](https://twitter.com/metajs_org)
+[![Latest NPM release][npm-badge]][npm-badge-url] [![Build Status](https://travis-ci.org/florianmaxim/Meta.svg?branch=master)](https://travis-ci.org/florianmaxim/Meta) [![Dependencies][dependencies-badge]][dependencies-badge-url] [![https://metajs.org](https://img.shields.io/badge/metajs.org-online-green.svg)](https://metajs.org) [![https://metajs.org](https://img.shields.io/badge/twitter-metajs_org-blue.svg)](https://twitter.com/metajs_org)
 
 # 🚀 Why (did you come up with this)?
 
-Spatial media like Virtual Reality or Augmented Reality is peerceived in such a fundamentally different way to computer graphics as we know them that we need to find new ways to describe it.
+Spatial media like Virtual Reality or Augmented Reality is perceived in such a fundamentally different way to computer graphics as we know them that we need to find new ways to describe it.
 This is an approach.
 
 Furthermore this is an attempt to create the most accessible virtual reality library possible.
