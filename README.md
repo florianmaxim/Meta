@@ -7,22 +7,20 @@
 <img src="resources/logo.png" width="100" height="100"/>
 
 # Meta.js 👩‍🚀
-## Simple Javascript Library For Virtual Reality 🚀
-### Spatial programming for everyone.
+## Javascript Library For Virtual Reality 🚀
 
 # [![Latest NPM release][npm-badge]][npm-badge-url] [![Build Status](https://travis-ci.org/florianmaxim/Meta.svg?branch=master)](https://travis-ci.org/florianmaxim/Meta) [![Dependencies][dependencies-badge]][dependencies-badge-url] [![https://metajs.org](https://img.shields.io/badge/metajs.org-online-green.svg)](https://metajs.org) [![https://metajs.org](https://img.shields.io/badge/twitter-metajs_org-blue.svg)](https://twitter.com/metajs_org)
 
-# → [https://metajs.org](metajs.org)
+# 🚀 Why (did you come up with this)?
 
-# 🚀 Try
+Spatial media like Virtual Reality or Augmented Reality is peerceived in such a fundamentally different way to computer graphics as we know them that we need to find new ways to describe it.
+This is an approach.
 
-<a href="https://metajs.org" target="blank"><img src="https://media.giphy.com/media/3o7aCWDuzxsESrbmcE/giphy.gif" /></a>
+Furthermore this is an attempt to create the most accessible virtual reality library possible.
 
-## → [Try Meta.js here!](https://metajs.org)
+# 🎊 Features
 
-# 🎊 Why
-
-* 🏖 Learn how to use virtual (reality) space
+* 🏖 Learn how to use code virtual (reality) space in minutes
 * 💐 Code Virtual Reality like its the year you live in
 * 🤹🏻 Write in the language you know with the tools you love
 * 🚀 One code for any device (HTC Vive, Oculus Rift, Desktop, Smartphone, etc.).
@@ -30,7 +28,9 @@
 
 #  👩‍🚀 Usage
 
-It can't be more intuitive:
+<a href="https://metajs.org" target="blank"><img src="https://media.giphy.com/media/3o7aCWDuzxsESrbmcE/giphy.gif" /></a>
+
+This example is written in three lines that can't be more intuitive.
 
 ```javascript
 
@@ -38,7 +38,7 @@ import {Ground, Cube, on} from 'meta-client';
 
 new Ground();
 
-on('touch', (_) => new Cube().set(_));
+on('touch', (data) => new Cube().set(data.position));
 
 ```
 
