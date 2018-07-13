@@ -28,7 +28,7 @@ Furthermore this is an attempt to create the most accessible virtual reality lib
 
 #  👩‍🚀 Usage
 
-Start in three minutes (via Parcel-Bundler):
+### Start within minutes (via Parcel-Bundler):
 
 1. Create a new directory and enter it.
 ```script
@@ -62,10 +62,7 @@ on('touch', (data) => new Cube().set(data.position));
 ```script
 parcel index.html
 ```  
-8. Enter your VR space:
-```script
-Open http://localhost:1234/ in your browser.
-``` 
+8. Open http://localhost:1234/ in your browser.
 
 <a href="https://metajs.org" target="blank"><img src="https://media.giphy.com/media/3o7aCWDuzxsESrbmcE/giphy.gif" /></a>
 
