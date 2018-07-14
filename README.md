@@ -184,9 +184,11 @@ Join the [Slack channel](https://metajsorg.slack.com) to talk about (virtual) sp
        <td>
             Chrome
         </td>
-        <td>     
+        <td>  
+            67.0.3396.99   
         </td>
         <td>
+            <img src ="https://img.shields.io/badge/status-stable-green.svg" />
         </td>
     </tr>
 </table>
