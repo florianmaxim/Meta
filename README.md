@@ -84,6 +84,13 @@ parcel index.html
 ```  
 Open http://localhost:1234/ in your browser.
 
+### One Line
+Alternatively you can also put all steps together in a single line like this:
+
+```script
+touch index.html index.js && echo '<html><body><script src="./index.js"></script></body></html>' >> ./index.html && echo "import {Ground, Cube, on} from 'meta-client';\nnew Ground();\non('touch', (data) => new Cube().set(data.position));" >> ./index.js && npm init -y && npm i parcel-bundler meta-client && parcel index.html
+```
+
 # 🎉 Custom
 
 ```script
