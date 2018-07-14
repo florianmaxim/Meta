@@ -23,7 +23,7 @@ Furthermore this is an attempt to create the most accessible virtual reality lib
 * 🏖 Learn how to create and use code virtual (reality) space in minutes.
 * 💐 Code Virtual Reality like its the year you live in.
 * 🤹🏻 Write in the language you know with the tools you love.
-* 🚀 One code for any device (HTC Vive, Oculus Rift, Desktop, Smartphone, etc.).
+* 🚀 Write one version of your code that works on any device (HTC Vive, Oculus Rift, Desktop, Mobile, etc.).
 * 🏰 Grab a cube now, move a castle soon!
 
 # 💐 Example
