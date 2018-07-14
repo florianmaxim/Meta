@@ -48,7 +48,7 @@ on('touch', (data) => new Cube().set(data.position));
 
 You need to have Node.js (https://nodejs.org) installed.
 
-(If you don't know how to use the terminal watch <a href="https://www.youtube.com/watch?v=jDINUSK7rXE">this</a>.)
+(If you don't know how to use the terminal watch <a href="https://www.youtube.com/watch?v=jDINUSK7rXE" target="_blank">this</a>.)
 
 1. Create a new directory and enter it.
 ```script
