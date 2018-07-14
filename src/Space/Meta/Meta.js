@@ -13,14 +13,9 @@ import Space    from '../Space';
 import Graphics  from './Graphics/Graphics';
 import Existence from './Existence/Existence';
 
-import Cube     from './Graphics/Geometries/Cube';
-import Sphere   from './Graphics/Geometries/Sphere';
-
 import * as OIMO  from 'oimo';
 
 const name = 'Meta';
-
-let set = false;
 
 let scope;
 
@@ -50,35 +45,44 @@ export default class Meta {
       //events
       this.events = [];
 
-      //states (merge into {state})
+      //states (TODO: merge into {state})
       this._entered = null;
       this._touched = false;
 
-      //e,g,p existence, graphics, physics
-      this.existence = props!==undefined&&props.existence!==undefined?props.existence:new Existence();
-      this.graphics  = props!==undefined&&props.graphics!==undefined?props.graphics:new Graphics();
-
-      this._physics = props!==undefined&&props.p!==undefined?props.p:true;
-      this._physics = props!==undefined&&props.physics!==undefined?props.physics:true;
-
-      this.color();
-
+      //props
       this.rotation = {x:0,y:0,z:0};
       this.position = {x:0,y:0,z:0};
 
-      //Get properties from visual representation (mesh)
-      this.setSize();
+      //e,g,p (existence, graphics, physics)
+      this.existence = props!==undefined&&props.existence!==undefined?props.existence:new Existence();
+      
+      this.graphics  = props!==undefined&&props.graphics!==undefined?props.graphics:new Graphics();
 
-      //Start Physics (with properties fetched above)
-      this.physics();
+      this.physics   = props!==undefined&&props.physics!==undefined?props.physics:true;
+
+      //Set existence
+      this.setExistence();
+
+      //Set graphics
+      //this.setGraphics();
+
+      //Set physics
+      this.setPhysics();
 
       //Start Presence
-      Space.get().add(this);
+      this.setPresence();
 
-      //Start Existence
-      if(this.existence.start===null&&this.existence.end===null)
-      Space.get().start(this);
 
+      return this;
+  }
+
+  setExistence(){
+    if(this.existence.start===null&&this.existence.end===null)
+    Space.get().start(scope);
+  }
+
+  setPresence(){
+    Space.get().add(this);
   }
 
   o(eventName, callback){
@@ -114,16 +118,27 @@ export default class Meta {
     return this;
   }
 
-
-  setPosition(){ 
-    //Get position from visual representation (mesh)
-    //and assign it to this  
-
-   this.position = {
-    x: this.graphics.mesh.position.x,
-    y: this.graphics.mesh.position.y,
-    z: this.graphics.mesh.position.z
+  s(props){
+    return this.set(props)
   }
+  set(position){
+
+    this.setPosition(position);
+
+    this.setPhysics();
+
+    return this;
+  }
+
+  setPosition(position){ 
+
+    this.graphics.setPosition(position)
+
+    this.position = {
+      x: this.graphics.mesh.position.x,
+      y: this.graphics.mesh.position.y,
+      z: this.graphics.mesh.position.z
+    }
 
    //console.log('[this.position]'+this.position)
    return this;
@@ -144,6 +159,8 @@ export default class Meta {
   }
 
   setSize(){
+
+
     //Define Meta's Size According To Graphic's Dimensions
     let box3 = new Box3().setFromObject(this.graphics.mesh);
 
@@ -169,29 +186,31 @@ export default class Meta {
 
 
   p(m){
-    return this.physics(m);
+    return this.setPhysics(m);
   }
-  physics(_physics){
+  setPhysics(physics){
+
+    this.setSize();
 
     //If physics have been set already and the same parameter was passed leave directly
-    if(this.body!==undefined&&_physics===this._physics) return;
+    if(this.body!==undefined&&physics===this.physics) return;
 
-    _physics = _physics!==undefined?_physics:this._physics;
+    physics = physics!==undefined?physics:this.physics;
 
-    if(_physics===null){
-      this._physics = null;
+    if(physics===null){
+      this.physics = null;
       return this;
     }
 
-    let mode = _physics;
+    let mode = physics;
 
-    //Meaning it had physics before, which were stopped setting _physics to false.
+    //Meaning it had physics before, which were stopped setting physics to false.
     if(this.body!==undefined){
       this.body.remove();
       ////console.log('[Meta].physics() - Already have a body, so set this.body = null to get a new one]')
     }
 
-    // console.log('[Meta].physics()-this._physics:'+this._physics);
+    // console.log('[Meta].physics()-this.physics:'+this.physics);
     // console.log('[Meta].physics()-_mode:'+mode);
 
     //alert(this.rotation.y)
@@ -220,7 +239,7 @@ export default class Meta {
     this.body = world.add(body); //CLUE: This constantly add the current body position into this.body
 
     //IMPORTANT: Save the new state!
-    this._physics = _physics;
+    this.physics = physics;
     return this;
   }
 
@@ -313,23 +332,7 @@ export default class Meta {
     return this;
   }
 
-  s(props){
-    return this.set(props)
-  }
-  set(position){
-
-    position = position.position || position;
-
-    // log(position, name);
-
-    //Set graphics
-    this.graphics.mesh.position.copy(position);
-
-    this.setSize();
-    this.setPosition();
-    this.physics();
-    return this;
-  }
+  
 
   /*
     Move (set)
