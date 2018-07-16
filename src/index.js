@@ -17,7 +17,7 @@ import Ground    from './Space/Meta/Custom/Ground';
 import Grid      from './Space/Meta/Custom/Grid';
 import Brick     from './Space/Meta/Custom/Brick';
 
-import Model     from './Space/Meta/Graphics/Geometries/Model';
+import Model     from './Space/Meta/Graphics/Model/Model';
 
 const _DEFAULT = {
 

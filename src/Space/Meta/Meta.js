@@ -67,7 +67,7 @@ export default class Meta {
       //this.setGraphics();
 
       //Set physics
-      this.setPhysics();
+      //this.setPhysics();
 
       //Start Presence
       this.setPresence();
@@ -118,14 +118,42 @@ export default class Meta {
     return this;
   }
 
+  m(direction, amount){
+    return(this.move(direction, amount))
+  }
+  move(direction, amount){
+
+    switch (direction) {
+      default:
+       case 0: case 'f': case 'forward': case 'forwards':
+        this.setPosition({x:this.position.x,y:this.position.y,z:this.position.z+amount})
+        break;
+       case 1: case 'b': case 'backward': case 'backwards':
+        this.setPosition({x:this.position.x,y:this.position.y,z:this.position.z-amount})
+        break;
+       case 2: case 'l': case 'left':
+         this.setPosition({x:this.position.x-amount,y:this.position.y,z:this.position.z})
+        break;
+       case 3: case 'r': case 'right':
+         this.setPosition({x:this.position.x+amount,y:this.position.y,z:this.position.z})
+        break;
+       case 4: case 'd': case 'down':
+        this.setPosition({x:this.position.x,y:this.position.y-amount,z:this.position.z})
+        break;
+       case 5: case 'u': case 'up':
+        this.setPosition({x:this.position.x,y:this.position.y+amount,z:this.position.z})  
+        break;
+    }
+
+    return this;
+  }
+
   s(props){
     return this.set(props)
   }
   set(position){
 
     this.setPosition(position);
-
-    this.setPhysics();
 
     return this;
   }
@@ -140,18 +168,48 @@ export default class Meta {
       z: this.graphics.mesh.position.z
     }
 
-   //console.log('[this.position]'+this.position)
+   log('[this.position]'+this.position)
    return this;
   }
 
-  setRotation(){
-    //Get rotation from visual representation (mesh)
-    //and assign it to this 
+
+  r(direction, amount){
+    return this.rotate(direction, amount);
+  }
+  rotate(direction, amount){
+
+    switch (direction) {
+      default:
+       case 0: case 'f': case 'forward': case 'forwards':
+          this.setRotation({x:this.rotation.x+amount, y:0, z:0});
+        break;
+       case 1: case 'b': case 'backward': case 'backwards':
+          this.setRotation({x:this.rotation.x-amount, y:0, z:0});
+        break;
+       case 2: case 'l': case 'left':
+          this.setRotation({x:0, y:this.rotation.y-amount, z:0});
+        break;
+       case 3: case 'r': case 'right':
+          this.setRotation({x:0, y:this.rotation.y+amount, z:0});
+        break;
+       case 4: case 'd': case 'down':
+          this.setRotation({x:0, y: 0, z:this.rotation.z+amount});
+        break;
+       case 5: case 'u': case 'up':
+          this.setRotation({x:0, y: 0, z:this.rotation.z-amount});
+        break;
+    }
+
+    return this;
+  }
+  setRotation(rotation){
+
+    this.graphics.setRotation(rotation)
 
     this.rotation = {
-      x: this.graphics.mesh.rotation._x.x,
-      y: this.graphics.mesh.rotation._x.y,
-      z: this.graphics.mesh.rotation._x.z
+      x: this.graphics.mesh.rotation.x,
+      y: this.graphics.mesh.rotation.y,
+      z: this.graphics.mesh.rotation.z
     }
 
     log(JSON.stringify(this.rotation), name)
@@ -244,8 +302,8 @@ export default class Meta {
   }
 
   //Add life to Meta's life.
-  l(life){
-    return this.live(life);
+  l(mode = 'on', life){
+    return this.live(mode = 'on', life);
   }
   live(mode = 'on', life){
 
@@ -331,77 +389,7 @@ export default class Meta {
 
     return this;
   }
-
-  
-
-  /*
-    Move (set)
-  */
-  m(direction, amount){
-    return(this.move(direction, amount))
-  }
-  move(direction, amount){
-
-    switch (direction) {
-      default:
-       case 0: case 'f': case 'forward': case 'forwards':
-        this.graphics.mesh.position.z -= amount;
-        break;
-       case 1: case 'b': case 'backward': case 'backwards':
-        this.graphics.mesh.position.z += amount;
-        break;
-       case 2: case 'l': case 'left':
-        this.graphics.mesh.position.x -= amount;
-        break;
-       case 3: case 'r': case 'right':
-        this.graphics.mesh.position.x += amount;
-        break;
-       case 4: case 'd': case 'down':
-        this.graphics.mesh.position.y -= amount;
-        break;
-       case 5: case 'u': case 'up':
-        this.graphics.mesh.position.y += amount;
-        break;
-    }
-
-    this.setSize();    
-    this.setPosition();
-    this.physics();
-    return this;
-  }
-
-  r(direction, amount){
-    return this.rotate(direction, amount);
-  }
-  rotate(direction, amount){
-
-    switch (direction) {
-      default:
-       case 0: case 'f': case 'forward': case 'forwards':
-          this.graphics.mesh.rotation.set({x:amount, y:0, z:0});
-        break;
-       case 1: case 'b': case 'backward': case 'backwards':
-          this.graphics.mesh.rotation.set({x:-amount, y:0, z:0});
-        break;
-       case 2: case 'l': case 'left':
-          this.graphics.mesh.rotation.set({x:0, y:-amount, z:0});
-        break;
-       case 3: case 'r': case 'right':
-          this.graphics.mesh.rotation.set({x:0, y:amount, z:0});
-        break;
-       case 4: case 'd': case 'down':
-          this.graphics.mesh.rotation.set({x:0, y: 0, z:amount});
-        break;
-       case 5: case 'u': case 'up':
-          this.graphics.mesh.rotation.set({x:0, y: 0, z:-amount});
-        break;
-    }
-
-    this.setRotation();
-    this.physics();
-    return this;
-  }
-
+ 
   add(instance){
     this.graphics = instance;
   }

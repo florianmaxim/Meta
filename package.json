@@ -10,6 +10,7 @@
   "main": "lib/index.js",
   "scripts": {
     "test": "npm run build",
+    "dev": "parcel index.html",
     "build:docs": "documentation build src/** --shallow -f html -o docs",
     "build": "npx babel src --out-dir lib --no-comments --minified",
     "prepublish": "npm run build"
@@ -18,9 +19,11 @@
   "license": "ISC",
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-plugin-root-import": "^6.1.0",
     "babel-preset-env": "^1.6.0",
     "documentation": "^6.1.0",
-    "npx": "^10.0.1"
+    "npx": "^10.0.1",
+    "parcel-bundler": "^1.9.7"
   },
   "dependencies": {
     "oimo": "^1.0.9",

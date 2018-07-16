@@ -27,8 +27,8 @@ export default {
             camera: {
                 position: {
                     x: 0,
-                    y: 1.6,
-                    z: 5
+                    y: 0,
+                    z: 3
                 }
             },  
             globe: {
@@ -51,8 +51,8 @@ export default {
             camera: {
                 position: {
                     x: 0,
-                    y: 1.6,
-                    z: 7.5
+                    y: 0,
+                    z: 3
                 }
             },  
             globe:{

@@ -1,4 +1,14 @@
 {
   "presets": ["env"],
-  "comments": false
+  "comments": false,
+
+  "plugins": [
+    ["babel-plugin-root-import"]
+  ],
+  "env": {
+    "production": {
+      "plugins": ["babel-plugin-root-import"]
+    }
+  }
+
 }
