@@ -92,8 +92,7 @@ touch index.html index.js && echo '<html><body><script src="./index.js"></script
 ```
 ### 🤹🏻 How to use the examples
 
-It can be a very useful way to start your project with a working example.
-bla
+It can be very useful to start with a working example.
 
 To use the examples clone a full copy of Meta.js:
  ```script
