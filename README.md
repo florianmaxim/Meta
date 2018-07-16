@@ -13,7 +13,7 @@
 
 # 🚀 Why (did you come up with this)?
 
-Spatial media like Virtual Reality or Augmented Reality is perceived in such a fundamentally different way than computer graphics as we know them that we need to find new ways to describe it.
+Spatial media like virtual reality or augmented reality is perceived in such a fundamentally different way than computer graphics as we know them that we need to find new ways to describe it.
 This is an approach.
 
 Furthermore this is an attempt to create the most accessible virtual reality library possible.
