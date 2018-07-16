@@ -10,6 +10,7 @@
   "main": "lib/index.js",
   "scripts": {
     "test": "npm run build",
+    "start": "npm run dev",
     "dev": "parcel index.html",
     "build:docs": "documentation build src/** --shallow -f html -o docs",
     "build": "npx babel src --out-dir lib --no-comments --minified",

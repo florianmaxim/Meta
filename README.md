@@ -11,20 +11,20 @@
 
 [![Latest NPM release][npm-badge]][npm-badge-url] [![Build Status](https://travis-ci.org/florianmaxim/Meta.svg?branch=master)](https://travis-ci.org/florianmaxim/Meta) [![Dependencies][dependencies-badge]][dependencies-badge-url] [![https://metajs.org](https://img.shields.io/badge/twitter-metajs_org-blue.svg)](https://twitter.com/metajs_org)
 
+# 🎊 Features
+
+* 🏖 Learn how to create and use code virtual (reality) space in minutes.
+* 💐 Code virtual reality like its the year you live in.
+* 🤹🏻 Write in the language you know with the tools you love.
+* 🚀 Write one version of your code that works on any device (HTC Vive, Oculus Rift, Desktop, Mobile, etc.).
+* 🏰 Grab a cube now, move a castle soon!
+
 # 🚀 Why (did you come up with this)?
 
 Spatial media like Virtual Reality or Augmented Reality is perceived in such a fundamentally different way than computer graphics as we know them that we need to find new ways to describe it.
 This is an approach.
 
 Furthermore this is an attempt to create the most accessible virtual reality library possible.
-
-# 🎊 Features
-
-* 🏖 Learn how to create and use code virtual (reality) space in minutes.
-* 💐 Code Virtual Reality like its the year you live in.
-* 🤹🏻 Write in the language you know with the tools you love.
-* 🚀 Write one version of your code that works on any device (HTC Vive, Oculus Rift, Desktop, Mobile, etc.).
-* 🏰 Grab a cube now, move a castle soon!
 
 # 💐 Example
 
@@ -44,7 +44,7 @@ on('touch', (data) => new Cube().set(data.position));
 
 #  👩‍🚀 Usage
 
-### Start within 3 minutes (via Parcel-Bundler):
+### Custom start within minutes:
 
 You need to have Node.js (https://nodejs.org) installed.
 
@@ -90,8 +90,30 @@ Alternatively you can also put all steps together in a single line like this:
 ```script
 touch index.html index.js && echo '<html><body><script src="./index.js"></script></body></html>' >> ./index.html && echo "import {Ground, Cube, on} from 'meta-client';\nnew Ground();\non('touch', (data) => new Cube().set(data.position));" >> ./index.js && npm init -y && npm i parcel-bundler meta-client && parcel index.html
 ```
+### 🤹🏻 How to use the examples
 
-# 🎉 Custom
+It can be a very useful way to start your project with a working example.
+Simple copy the example's directory and dive right in!
+The examples are being kept as focused as possible.
+
+To use the examples clone a full copy of Meta.js:
+ ```script
+git clone https://github.com/florianmaxim/meta
+``` 
+Navigate to the examples directory:
+```script
+cd meta/examples
+``` 
+Select the example you want to work with:
+```script
+cd 1
+``` 
+Install and start the example:
+```script
+npm start
+``` 
+
+### 🎉 Custom installation
 
 ```script
 git clone https://github.com/florianmaxim/meta
