@@ -42436,7 +42436,7 @@ exports.LensFlare = LensFlare;
 },{}],"package.json":[function(require,module,exports) {
 module.exports = {
   "name": "meta-client",
-  "version": "0.0.0-c29",
+  "version": "0.0.0-c31",
   "description": "Meta.js (Client)",
   "homepage": "https://metajs.org",
   "repository": {
@@ -61637,7 +61637,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '64393' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '53204' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
