@@ -50,6 +50,7 @@ export default class Meta {
       this._touched = false;
 
       //props
+      this.size = [1,1,1];
       this.rotation = {x:0,y:0,z:0};
       this.position = {x:0,y:0,z:0};
 
@@ -64,10 +65,13 @@ export default class Meta {
       this.setExistence();
 
       //Set graphics
+      if(this.graphics.model!==undefined){
+        alert('wait')
+      }
       //this.setGraphics();
 
       //Set physics
-      //this.setPhysics();
+      this.setPhysics();
 
       //Start Presence
       this.setPresence();
@@ -118,6 +122,7 @@ export default class Meta {
     return this;
   }
 
+
   m(direction, amount){
     return(this.move(direction, amount))
   }
@@ -147,7 +152,6 @@ export default class Meta {
 
     return this;
   }
-
   s(props){
     return this.set(props)
   }
@@ -157,7 +161,6 @@ export default class Meta {
 
     return this;
   }
-
   setPosition(position){ 
 
     this.graphics.setPosition(position)
@@ -218,7 +221,6 @@ export default class Meta {
 
   setSize(){
 
-
     //Define Meta's Size According To Graphic's Dimensions
     let box3 = new Box3().setFromObject(this.graphics.mesh);
 
@@ -238,7 +240,7 @@ export default class Meta {
       break;
     }
 
-    //console.log('[Size]'+this.size);
+    console.log('[Size]'+this.size);
 
   }
 
@@ -248,7 +250,7 @@ export default class Meta {
   }
   setPhysics(physics){
 
-    this.setSize();
+    //this.setSize();
 
     //If physics have been set already and the same parameter was passed leave directly
     if(this.body!==undefined&&physics===this.physics) return;
@@ -291,7 +293,7 @@ export default class Meta {
     
     }
 
-    //log(body, name);
+    console.log(body);
 
     //@todo Should be: Physics.add(body);
     this.body = world.add(body); //CLUE: This constantly add the current body position into this.body

@@ -59450,6 +59450,7 @@ var Meta = function () {
     this._touched = false;
 
     //props
+    this.size = [1, 1, 1];
     this.rotation = { x: 0, y: 0, z: 0 };
     this.position = { x: 0, y: 0, z: 0 };
 
@@ -59464,10 +59465,13 @@ var Meta = function () {
     this.setExistence();
 
     //Set graphics
+    if (this.graphics.model !== undefined) {
+      alert('wait');
+    }
     //this.setGraphics();
 
     //Set physics
-    //this.setPhysics();
+    this.setPhysics();
 
     //Start Presence
     this.setPresence();
@@ -59657,7 +59661,7 @@ var Meta = function () {
           break;
       }
 
-      //console.log('[Size]'+this.size);
+      console.log('[Size]' + this.size);
     }
   }, {
     key: 'p',
@@ -59668,7 +59672,7 @@ var Meta = function () {
     key: 'setPhysics',
     value: function setPhysics(physics) {
 
-      this.setSize();
+      //this.setSize();
 
       //If physics have been set already and the same parameter was passed leave directly
       if (this.body !== undefined && physics === this.physics) return;
@@ -59709,10 +59713,12 @@ var Meta = function () {
         belongsTo: mode !== undefined && mode.belongsTo !== undefined ? mode.belongsTo : 1,
         collidesWith: mode !== undefined && mode.collidesWith !== undefined ? mode.collidesWith : 0xffffffff
 
-        //log(body, name);
+      };
 
-        //@todo Should be: Physics.add(body);
-      };this.body = world.add(body); //CLUE: This constantly add the current body position into this.body
+      console.log(body);
+
+      //@todo Should be: Physics.add(body);
+      this.body = world.add(body); //CLUE: This constantly add the current body position into this.body
 
       //IMPORTANT: Save the new state!
       this.physics = physics;
@@ -59947,6 +59953,8 @@ var Graphics = function () {
 
     this.mesh = props !== undefined && props.mesh !== undefined && props.mesh !== true ? props.mesh : new _three.Mesh(this.geometry, this.material);
 
+    this.size = {};
+
     this.model = props.model !== undefined ? props.model : undefined;
 
     this.loader = undefined;
@@ -59970,6 +59978,9 @@ var Graphics = function () {
 
           //Add model id to list
           models.push([gltf.scene.id, _this.model]);
+
+          //Set size
+          _this.setSize();
         });
       };
 
@@ -60023,6 +60034,33 @@ var Graphics = function () {
   }
 
   _createClass(Graphics, [{
+    key: 'setSize',
+    value: function setSize() {
+
+      var box3 = new THREE.Box3().setFromObject(this.mesh);
+
+      console.log(box3);
+
+      var x = box3.max.x - box3.min.x;
+      var y = box3.max.y - box3.min.y;
+      var z = box3.max.z - box3.min.z;
+
+      switch (this.type) {
+        case 'box':
+          this.size = [x, y, z];
+          break;
+        case 'sphere':
+          this.size = [x / 2];
+          break;
+        case 'cylinder':
+          this.size = [x / 2, y, z / 2];
+          break;
+      }
+      console.log(this.size);
+
+      return this;
+    }
+  }, {
     key: 'setPosition',
     value: function setPosition(position) {
       this.mesh.position.copy(position);
@@ -61592,28 +61630,33 @@ var _index = require('./src/index');
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-new _index.Meta({
-    graphics: new _index.Graphics({
+/*
+new Meta({
+    graphics: new Graphics({
         model: 'helmet.gltf'
     }, true)
-}).move("left", 3).live("on", function (meta) {
-    meta.rotate("right", .01);
-});
+})
+.move("left", 3)
+.live("on", meta => {
+    meta.rotate("right", .01)
+})
 
-new _index.Meta({
-    graphics: new _index.Graphics({
+new Meta({
+    graphics: new Graphics({
         model: 'Helmet.gltf'
     }, true)
-}).move("right", 3).live("on", function (meta) {
-    meta.rotate("left", .01);
+})
+.move("right", 3)
+.live("on", meta => {
+    meta.rotate("left", .01)
+})
+*/
+
+new _index.M('helmet.gltf').m('u', 0).l("o", function (m) {
+    return m.r("r", .01);
 });
 
 /*
-new M('helmet.gltf')
-.m('f', 3)
-.l("o", m => 
-m.r("r", .01))
-
 new M('helmet.gltf')
 .m('b', 3)
 .l("o", m => 
@@ -61621,11 +61664,11 @@ m.r("l", .01))
 */
 
 /*
-const a = 1;
+const a = 3;
 for(let i = 0; i< a; i++){
     for(let j = 0; j< a; j++){
         for(let k = 0; k< a; k++){
-            new M('helmet.gltf')
+            new M('Duck.gltf')
             .setPosition({
                 x: i*2,
                 y: j*2,
@@ -61664,7 +61707,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '63529' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '64192' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 

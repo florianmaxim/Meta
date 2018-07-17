@@ -31,6 +31,8 @@ constructor(props, stop = false){
 
   this.mesh = props!==undefined&&props.mesh!==undefined&&props.mesh!==true?props.mesh:new Mesh(this.geometry, this.material);
 
+  this.size = {};
+
   this.model = props.model!==undefined?props.model:undefined;
 
   this.loader = undefined;
@@ -58,6 +60,9 @@ constructor(props, stop = false){
 
       //Add model id to list
       models.push([gltf.scene.id, this.model])
+
+      //Set size
+      this.setSize()
 
     })
 
@@ -115,6 +120,32 @@ return this;
 //console.log('[Graphics] - Has no caller, so go to Meta first')
 return new Meta({graphics: this, physics: this.physics});
 
+}
+
+setSize(){
+
+   let box3 = new THREE.Box3().setFromObject(this.mesh);
+
+   console.log(box3)
+
+   let x = box3.max.x - box3.min.x;
+   let y = box3.max.y - box3.min.y;
+   let z = box3.max.z - box3.min.z;
+
+   switch(this.type){
+     case 'box':
+       this.size = [x,y,z]
+     break;
+     case 'sphere':
+       this.size = [x/2]
+     break;
+     case 'cylinder':
+       this.size = [x/2,y,z/2]
+     break;
+   }
+   console.log(this.size);
+
+   return this;
 }
 
 setPosition(position){
