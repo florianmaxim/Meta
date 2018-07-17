@@ -19,16 +19,7 @@ import Brick     from './Space/Meta/Custom/Brick';
 
 import Model     from './Space/Meta/Graphics/Model/Model';
 
-const _DEFAULT = {
-
-  COLOR: {
-    PRIMARY: '#548adf',
-    SECONDARY: '#9aa9fe',
-    TEXT: '#ffffff'
-  }
-
-}
-console.log(`%c ◯ META.Client.${config.version}`, `background: linear-gradient(${_DEFAULT.COLOR.PRIMARY}, ${_DEFAULT.COLOR.SECONDARY});color: ${_DEFAULT.COLOR.TEXT};`);
+console.log(`%c ◯ META.Client.${config.version}`, `background: linear-gradient(${config.console.colors.primary}, ${config.console.colors.secondary});color: ${config.console.colors.text};`);
 
 export default class Void {
 

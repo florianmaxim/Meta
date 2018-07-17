@@ -42436,7 +42436,7 @@ exports.LensFlare = LensFlare;
 },{}],"package.json":[function(require,module,exports) {
 module.exports = {
   "name": "meta-client",
-  "version": "0.0.0-c31",
+  "version": "0.0.0-c32",
   "description": "Meta.js (Client)",
   "homepage": "https://metajs.org",
   "repository": {
@@ -42446,6 +42446,7 @@ module.exports = {
   "main": "lib/index.js",
   "scripts": {
     "test": "npm run build",
+    "start": "npm run dev",
     "dev": "parcel index.html",
     "build:docs": "documentation build src/** --shallow -f html -o docs",
     "build": "npx babel src --out-dir lib --no-comments --minified",
@@ -42455,7 +42456,6 @@ module.exports = {
   "license": "ISC",
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "babel-plugin-root-import": "^6.1.0",
     "babel-preset-env": "^1.6.0",
     "documentation": "^6.1.0",
     "npx": "^10.0.1",
@@ -42481,6 +42481,15 @@ exports.default = {
 
     log: false,
 
+    console: {
+
+        colors: {
+            primary: '#548adf',
+            secondary: '#9aa9fe',
+            text: '#ffffff'
+        }
+    },
+
     space: {
         color: 0xe0e0e0
     },
@@ -42503,7 +42512,7 @@ exports.default = {
                 position: {
                     x: 0,
                     y: 0,
-                    z: 3
+                    z: 5
                 }
             },
             globe: {
@@ -42526,8 +42535,8 @@ exports.default = {
             camera: {
                 position: {
                     x: 0,
-                    y: 0,
-                    z: 3
+                    y: 1.6,
+                    z: 7.5
                 }
             },
             globe: {
@@ -61430,16 +61439,16 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _ = require('../../../..');
+var _src = require('~/src');
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Model = function Model(file) {
     _classCallCheck(this, Model);
 
-    return new _.Meta({
+    return new _src.Meta({
 
-        graphics: new _.Graphics({
+        graphics: new _src.Graphics({
 
             model: file
 
@@ -61449,7 +61458,7 @@ var Model = function Model(file) {
 };
 
 exports.default = Model;
-},{"../../../..":"src\\index.js"}],"src\\index.js":[function(require,module,exports) {
+},{"~/src":"src\\index.js"}],"src\\index.js":[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -61513,16 +61522,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var _DEFAULT = {
-
-  COLOR: {
-    PRIMARY: '#548adf',
-    SECONDARY: '#9aa9fe',
-    TEXT: '#ffffff'
-  }
-
-};
-console.log('%c \u25EF META.Client.' + _config2.default.version, 'background: linear-gradient(' + _DEFAULT.COLOR.PRIMARY + ', ' + _DEFAULT.COLOR.SECONDARY + ');color: ' + _DEFAULT.COLOR.TEXT + ';');
+console.log('%c \u25EF META.Client.' + _config2.default.version, 'background: linear-gradient(' + _config2.default.console.colors.primary + ', ' + _config2.default.console.colors.secondary + ');color: ' + _config2.default.console.colors.text + ';');
 
 var Void = function Void() {
   _classCallCheck(this, Void);
@@ -61637,7 +61637,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '53204' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '51755' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
