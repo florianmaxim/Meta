@@ -13,15 +13,16 @@ const _DEFAULT = {
 TYPE: 'box' // typ for physics
 }
 
-//console.log(new THREE.GLTFLoader())
+let models = [];
 
-let scope;
-
+/** This class represents the visual representation of a Meta object. This is the only class in this library that is directly communicating with the 3D graphics libraray three.js.
+* @constructor
+* @param {Object} geometry
+* @param {Object} material
+*/
 export default class Graphics {
 
 constructor(props, stop = false){
-
-  scope = this
 
   this.geometry = props!==undefined&&props.geometry!==undefined&&props.geometry!==true?props.geometry:new CubeGeometry();
   this.material = props!==undefined&&props.material!==undefined&&props.material!==true?props.material:new MeshPhongMaterial({color:Math.random()*0xffffff, side: DoubleSide});
@@ -48,6 +49,20 @@ constructor(props, stop = false){
     'new THREE.GLTFLoader()'
   ]
 
+  const loadModel = (loader) => {
+    
+    loader.load( this.model, ( gltf ) => {
+
+      //Add model to scene
+      this.mesh.add( gltf.scene );
+
+      //Add model id to list
+      models.push([gltf.scene.id, this.model])
+
+    })
+
+  }
+
   //Check for provided file extention
   if(this.model.includes(".")){
 
@@ -60,35 +75,28 @@ constructor(props, stop = false){
 
     fileExtention = result[1]
 
-    scope.loader = eval(loaders[extentions.indexOf(fileExtention)])
+    this.loader = eval(loaders[extentions.indexOf(fileExtention)])
 
-    loadModel(scope.loader)
+    loadModel(this.loader)
 
     return
   }
 
   //Auto-detect loader by testing model file extension
   extentions.forEach((extention) => {
-    if(scope.loader!==undefined) return;
+    if(this.loader!==undefined) return;
     fetch(this.model+extention)
     .then(function(response) {
       if(response.status===200){
-        scope.loader = eval(loaders[extentions.indexOf(extention)])
+        this.loader = eval(loaders[extentions.indexOf(extention)])
         //Add extentions to model file path
-        scope.model = scope.model+'.'+extention
+        this.model = this.model+'.'+extention
         //load model
-        loadModel(scope.loader)
+        loadModel(this.loader)
       }
     })
     .catch(error => console.error(error));
   })
-
-  function loadModel(loader){
-    loader.load( scope.model, ( gltf ) => {
-      scope.mesh.add( gltf.scene );
-    });
-  }
-
 
 }
 
@@ -105,7 +113,6 @@ if(stop)
 return this;
 
 //console.log('[Graphics] - Has no caller, so go to Meta first')
-
 return new Meta({graphics: this, physics: this.physics});
 
 }
@@ -131,5 +138,9 @@ return this;
 add(instance){
 this.geometry = instance;
 }
+
+  static getModels(){
+    return models;
+  }
 
 }

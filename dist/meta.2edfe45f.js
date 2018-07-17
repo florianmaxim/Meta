@@ -59922,11 +59922,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 var _DEFAULT = {
   TYPE: 'box' // typ for physics
+};
 
+var models = [];
 
-  //console.log(new THREE.GLTFLoader())
-
-};var scope = void 0;
+/** This class represents the visual representation of a Meta object. This is the only class in this library that is directly communicating with the 3D graphics libraray three.js.
+* @constructor
+* @param {Object} geometry
+* @param {Object} material
+*/
 
 var Graphics = function () {
   function Graphics(props) {
@@ -59935,8 +59939,6 @@ var Graphics = function () {
     var stop = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
 
     _classCallCheck(this, Graphics);
-
-    scope = this;
 
     this.geometry = props !== undefined && props.geometry !== undefined && props.geometry !== true ? props.geometry : new _three.CubeGeometry();
     this.material = props !== undefined && props.material !== undefined && props.material !== true ? props.material : new _three.MeshPhongMaterial({ color: Math.random() * 0xffffff, side: _three.DoubleSide });
@@ -59950,11 +59952,6 @@ var Graphics = function () {
     this.loader = undefined;
 
     if (this.model !== undefined) {
-      var _loadModel = function _loadModel(loader) {
-        loader.load(scope.model, function (gltf) {
-          scope.mesh.add(gltf.scene);
-        });
-      };
 
       //Add models default directory
       this.model = 'models/' + this.model;
@@ -59963,6 +59960,18 @@ var Graphics = function () {
 
       var extentions = ['gltf'];
       var loaders = ['new THREE.GLTFLoader()'];
+
+      var loadModel = function loadModel(loader) {
+
+        loader.load(_this.model, function (gltf) {
+
+          //Add model to scene
+          _this.mesh.add(gltf.scene);
+
+          //Add model id to list
+          models.push([gltf.scene.id, _this.model]);
+        });
+      };
 
       //Check for provided file extention
       if (this.model.includes(".")) {
@@ -59976,23 +59985,23 @@ var Graphics = function () {
 
         fileExtention = result[1];
 
-        scope.loader = eval(loaders[extentions.indexOf(fileExtention)]);
+        this.loader = eval(loaders[extentions.indexOf(fileExtention)]);
 
-        _loadModel(scope.loader);
+        loadModel(this.loader);
 
         return;
       }
 
       //Auto-detect loader by testing model file extension
       extentions.forEach(function (extention) {
-        if (scope.loader !== undefined) return;
+        if (_this.loader !== undefined) return;
         fetch(_this.model + extention).then(function (response) {
           if (response.status === 200) {
-            scope.loader = eval(loaders[extentions.indexOf(extention)]);
+            this.loader = eval(loaders[extentions.indexOf(extention)]);
             //Add extentions to model file path
-            scope.model = scope.model + '.' + extention;
+            this.model = this.model + '.' + extention;
             //load model
-            _loadModel(scope.loader);
+            loadModel(this.loader);
           }
         }).catch(function (error) {
           return console.error(error);
@@ -60010,7 +60019,6 @@ var Graphics = function () {
     if (stop) return this;
 
     //console.log('[Graphics] - Has no caller, so go to Meta first')
-
     return new _Meta2.default({ graphics: this, physics: this.physics });
   }
 
@@ -60039,6 +60047,11 @@ var Graphics = function () {
     key: 'add',
     value: function add(instance) {
       this.geometry = instance;
+    }
+  }], [{
+    key: 'getModels',
+    value: function getModels() {
+      return models;
     }
   }]);
 
@@ -61579,35 +61592,49 @@ var _index = require('./src/index');
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-/*
-new Meta({
-    graphics: new Graphics({
+new _index.Meta({
+    graphics: new _index.Graphics({
+        model: 'helmet.gltf'
+    }, true)
+}).move("left", 3).live("on", function (meta) {
+    meta.rotate("right", .01);
+});
+
+new _index.Meta({
+    graphics: new _index.Graphics({
         model: 'Helmet.gltf'
     }, true)
-}).live("on", meta => {
-    meta.rotate("left", .01)
-})
-*/
-
-/*
-new Graphics({
-    model: 'Helmet.gltf'
-}, true)
-.live("on", meta => {
-    meta.rotate("left", .01)
-})
-*/
-
-/*
-new Model('helmet')
-.live("on", meta => {
-    meta.rotate("right", .01)
-})
-*/
-
-new _index.M('helmet').l("o", function (m) {
-    return m.r("r", .01);
+}).move("right", 3).live("on", function (meta) {
+    meta.rotate("left", .01);
 });
+
+/*
+new M('helmet.gltf')
+.m('f', 3)
+.l("o", m => 
+m.r("r", .01))
+
+new M('helmet.gltf')
+.m('b', 3)
+.l("o", m => 
+m.r("l", .01))
+*/
+
+/*
+const a = 1;
+for(let i = 0; i< a; i++){
+    for(let j = 0; j< a; j++){
+        for(let k = 0; k< a; k++){
+            new M('helmet.gltf')
+            .setPosition({
+                x: i*2,
+                y: j*2,
+                z: k*2
+            })
+        }
+    }
+}
+*/
 },{"three":"node_modules\\three\\build\\three.module.js","./src/index":"src\\index.js"}],"node_modules\\parcel-bundler\\src\\builtins\\hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -61637,7 +61664,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '51755' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '63529' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
