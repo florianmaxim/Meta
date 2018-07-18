@@ -66,7 +66,7 @@ export default class Meta {
 
       //Set graphics
       if(this.graphics.model!==undefined){
-        alert('wait')
+        //alert('wait')
       }
       //this.setGraphics();
 
@@ -163,6 +163,10 @@ export default class Meta {
   }
   setPosition(position){ 
 
+    if(position.position!==undefined){
+      position = position.position
+    }
+
     this.graphics.setPosition(position)
 
     this.position = {
@@ -170,6 +174,8 @@ export default class Meta {
       y: this.graphics.mesh.position.y,
       z: this.graphics.mesh.position.z
     }
+
+    this.setPhysics()
 
    log('[this.position]'+this.position)
    return this;

@@ -3,6 +3,8 @@ import * as THREE from 'three';
 
 import {Model, M, Meta, Graphics, Ground, Cube, on} from './src/index';
 
+new Ground();
+
 /*
 new Meta({
     graphics: new Graphics({
@@ -25,11 +27,12 @@ new Meta({
 })
 */
 
-
+/*
 new M('helmet.gltf')
-.m('u', 0)
+.m('u', 2)
 .l("o", m => 
 m.r("r", .01))
+*/
 
 /*
 new M('helmet.gltf')
@@ -37,7 +40,6 @@ new M('helmet.gltf')
 .l("o", m => 
 m.r("l", .01))
 */
-
 
 /*
 const a = 3;
@@ -53,4 +55,27 @@ for(let i = 0; i< a; i++){
         }
     }
 }
+*/
+
+/*
+class Duck {
+    constructor(){
+        return new Model('Duck')
+    }
+}
+on('touch', (_) => {
+    new Duck().s(_)
+})
+*/
+
+/*
+class Duck extends Model {
+    constructor(){super('Duck')}
+}
+on('t', (_) => new Duck().s(_))
+*/
+
+/*
+const D = () => new Model('Duck')
+on('t', (_) => D().s(_))
 */

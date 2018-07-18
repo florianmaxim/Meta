@@ -2,6 +2,8 @@ import * as THREE from 'three'
 
 import './three/examples/js/loaders/GLTFLoader'
 
+import Model from './Model/Model';
+
 import {CubeGeometry,
   MeshPhongMaterial,
   Mesh,
@@ -23,7 +25,7 @@ let models = [];
 export default class Graphics {
 
 constructor(props, stop = false){
-
+  
   this.geometry = props!==undefined&&props.geometry!==undefined&&props.geometry!==true?props.geometry:new CubeGeometry();
   this.material = props!==undefined&&props.material!==undefined&&props.material!==true?props.material:new MeshPhongMaterial({color:Math.random()*0xffffff, side: DoubleSide});
 
@@ -37,7 +39,10 @@ constructor(props, stop = false){
 
   this.loader = undefined;
 
+  //Is it a model?
   if(this.model !== undefined){
+
+  this.fileName = this.model;
 
   //Add models default directory
   this.model = 'models/'+this.model
@@ -88,11 +93,14 @@ constructor(props, stop = false){
   }
 
   //Auto-detect loader by testing model file extension
+  console.log('auto dectect file extention')
   extentions.forEach((extention) => {
     if(this.loader!==undefined) return;
     fetch(this.model+extention)
-    .then(function(response) {
+    .then((response) => {
+      //Check if this file exists
       if(response.status===200){
+        //Select loader
         this.loader = eval(loaders[extentions.indexOf(extention)])
         //Add extentions to model file path
         this.model = this.model+'.'+extention

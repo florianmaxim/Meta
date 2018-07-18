@@ -3,11 +3,9 @@ import {version} from './package.json';
 export default {
 
     version: version,
-    
     log: false,
 
     console: {
-
         colors: {
             primary: '#548adf',
             secondary: '#9aa9fe',
@@ -36,7 +34,7 @@ export default {
             camera: {
                 position: {
                     x: 0,
-                    y: 0,
+                    y: 2.5,
                     z: 5
                 }
             },  
