@@ -45,14 +45,26 @@ export default class Meta {
       //events
       this.events = [];
 
-      //states (TODO: merge into {state})
+      //states (TODO merge into {state})
       this._entered = null;
       this._touched = false;
 
       //props
-      this.size = [1,1,1];
-      this.rotation = {x:0,y:0,z:0};
-      this.position = {x:0,y:0,z:0};
+      this.size = {
+        x: props!==undefined&&props.size!==undefined&&props.size.x!==undefined?props.size.x:1,
+        y: props!==undefined&&props.size!==undefined&&props.size.y!==undefined?props.size.y:1,
+        z: props!==undefined&&props.size!==undefined&&props.size.z!==undefined?props.size.z:1
+      };
+      this.position = {
+        x: props!==undefined&&props.position!==undefined&&props.position.x!==undefined?props.position.x:0,
+        y: props!==undefined&&props.position!==undefined&&props.position.y!==undefined?props.position.y:0,
+        z: props!==undefined&&props.position!==undefined&&props.position.z!==undefined?props.position.z:0        
+      }
+      this.rotation = {
+        x: props!==undefined&&props.rotation!==undefined&&props.rotation.x!==undefined?props.rotation.x:0,
+        y: props!==undefined&&props.rotation!==undefined&&props.rotation.y!==undefined?props.rotation.y:0,
+        z: props!==undefined&&props.rotation!==undefined&&props.rotation.z!==undefined?props.rotation.z:0                
+      };
 
       //e,g,p (existence, graphics, physics)
       this.existence = props!==undefined&&props.existence!==undefined?props.existence:new Existence();
@@ -65,10 +77,7 @@ export default class Meta {
       this.setExistence();
 
       //Set graphics
-      if(this.graphics.model!==undefined){
-        //alert('wait')
-      }
-      //this.setGraphics();
+      this.setGraphics();
 
       //Set physics
       this.setPhysics();
@@ -76,8 +85,37 @@ export default class Meta {
       //Start Presence
       this.setPresence();
 
-
+      log(this)
       return this;
+  }
+
+  setSize(){
+
+    let box3 = new Box3().setFromObject(this.graphics.mesh);
+
+    let x = box3.max.x - box3.min.x;
+    let y = box3.max.y - box3.min.y;
+    let z = box3.max.z - box3.min.z;
+
+    switch(this.graphics.type){
+      case 'box':
+        this.size = [x,y,z]
+      break;
+      case 'sphere':
+        this.size = [x/2]
+      break;
+      case 'cylinder':
+        this.size = [x/2,y,z/2]
+      break;
+    }
+
+    console.log(this.size)
+
+  }
+
+  setGraphics(){
+    this.setSize()
+    this.setPosition()
   }
 
   setExistence(){
@@ -161,24 +199,18 @@ export default class Meta {
 
     return this;
   }
-  setPosition(position){ 
+  setPosition(position = this.position){
+    
+    position = position.position!==undefined?position.position:position
 
-    if(position.position!==undefined){
-      position = position.position
-    }
-
-    this.graphics.setPosition(position)
-
-    this.position = {
-      x: this.graphics.mesh.position.x,
-      y: this.graphics.mesh.position.y,
-      z: this.graphics.mesh.position.z
-    }
+    this.position = position;
+    
+    this.graphics.setPosition(this.position)
 
     this.setPhysics()
 
-   log('[this.position]'+this.position)
-   return this;
+    //console.log('[this.position]'+this.position)
+    return this;
   }
 
 
@@ -225,30 +257,7 @@ export default class Meta {
     return this;
   }
 
-  setSize(){
 
-    //Define Meta's Size According To Graphic's Dimensions
-    let box3 = new Box3().setFromObject(this.graphics.mesh);
-
-    let x = box3.max.x - box3.min.x;
-    let y = box3.max.y - box3.min.y;
-    let z = box3.max.z - box3.min.z;
-
-    switch(this.graphics.type){
-      case 'box':
-        this.size = [x,y,z]
-      break;
-      case 'sphere':
-        this.size = [x/2]
-      break;
-      case 'cylinder':
-        this.size = [x/2,y,z/2]
-      break;
-    }
-
-    console.log('[Size]'+this.size);
-
-  }
 
 
   p(m){
@@ -298,8 +307,6 @@ export default class Meta {
       collidesWith: mode!==undefined&&mode.collidesWith!==undefined?mode.collidesWith:0xffffffff,
     
     }
-
-    console.log(body);
 
     //@todo Should be: Physics.add(body);
     this.body = world.add(body); //CLUE: This constantly add the current body position into this.body

@@ -1,40 +1,39 @@
-import {CubeGeometry} from 'three';
+import * as THREE from 'three';
 
 import Graphics from '../Graphics';
 
-import Space from '../../../Space';
-
-const _DEFAULT = {
-  WIDTH: 1,
-  HEIGHT: 1,
-  LENGTH: 1,
-  SCALE: .5
-};
+import {Meta} from '../Graphics';
 
 export default class Cube {
 
-  constructor(props = {}, stop = false){
+  constructor(props, stop = false){
 
-    let scale = _DEFAULT.SCALE;
+    //props
+    this.size = {
+      x: props!==undefined&&props.size!==undefined&&props.size.x!==undefined?props.size.x:1,
+      y: props!==undefined&&props.size!==undefined&&props.size.y!==undefined?props.size.y:1,
+      z: props!==undefined&&props.size!==undefined&&props.size.z!==undefined?props.size.z:1
+    };
+    this.position = {
+      x: props!==undefined&&props.position!==undefined&&props.position.x!==undefined?props.position.x:0,
+      y: props!==undefined&&props.position!==undefined&&props.position.y!==undefined?props.position.y:0,
+      z: props!==undefined&&props.position!==undefined&&props.position.z!==undefined?props.position.z:0        
+    }
+    this.rotation = {
+      x: props!==undefined&&props.rotation!==undefined&&props.rotation.x!==undefined?props.rotation.x:0,
+      y: props!==undefined&&props.rotation!==undefined&&props.rotation.y!==undefined?props.rotation.y:0,
+      z: props!==undefined&&props.rotation!==undefined&&props.rotation.z!==undefined?props.rotation.z:0                
+    };
 
-    if(typeof(props)==='boolean') stop = props;
+    this.geometry = new THREE.BoxGeometry(1,1,1);
 
-    let _width  = props.w||props.width||_DEFAULT.WIDTH;
-    let _height = props.h||props.height||_DEFAULT.HEIGHT;
-    let _length = props.l||props.length||_DEFAULT.LENGTH;
+    this.type     = 'box';
 
-    if(typeof(props)==='number') _width = _height = _length = props;
+    if(stop)
+      return this.geometry;
 
-    _width = _width * scale
-    _height = _height * scale;
-    _length = _length * scale;
-
-    this.geometry = new CubeGeometry( _width, _height, _length );
-    this.type     = 'box'; //This is for the physics. Doesnt really belong in here.
-
-    //Go recursive if stop is not set
-    return stop?this.geometry:new Graphics(this);
-
+    return new Graphics(this);
+   
   }
 
 }

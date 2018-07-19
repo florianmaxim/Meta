@@ -59938,6 +59938,7 @@ exports.default = Meta;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.Meta = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -59966,6 +59967,8 @@ var _DEFAULT = {
 };
 
 var models = [];
+
+exports.Meta = _Meta2.default;
 
 /** This class represents the visual representation of a Meta object. This is the only class in this library that is directly communicating with the 3D graphics libraray three.js.
 * @constructor
@@ -60164,54 +60167,41 @@ Object.defineProperty(exports, "__esModule", {
 
 var _three = require('three');
 
+var THREE = _interopRequireWildcard(_three);
+
 var _Graphics = require('../Graphics');
 
 var _Graphics2 = _interopRequireDefault(_Graphics);
 
-var _Space = require('../../../Space');
-
-var _Space2 = _interopRequireDefault(_Space);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var _DEFAULT = {
-  WIDTH: 1,
-  HEIGHT: 1,
-  LENGTH: 1,
-  SCALE: .5
-};
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-var Cube = function Cube() {
-  var props = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  var stop = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-  _classCallCheck(this, Cube);
+var Cube = function (_Meta) {
+  _inherits(Cube, _Meta);
 
-  var scale = _DEFAULT.SCALE;
+  function Cube(props) {
+    _classCallCheck(this, Cube);
 
-  if (typeof props === 'boolean') stop = props;
+    return _possibleConstructorReturn(this, (Cube.__proto__ || Object.getPrototypeOf(Cube)).call(this, props = {
+      graphics: new _Graphics2.default({
+        geometry: new THREE.BoxGeometry(1, 1, 1),
+        material: new THREE.MeshPhongMaterial({ color: 0xff0000 })
+      }, true)
+    }));
+  }
 
-  var _width = props.w || props.width || _DEFAULT.WIDTH;
-  var _height = props.h || props.height || _DEFAULT.HEIGHT;
-  var _length = props.l || props.length || _DEFAULT.LENGTH;
-
-  if (typeof props === 'number') _width = _height = _length = props;
-
-  _width = _width * scale;
-  _height = _height * scale;
-  _length = _length * scale;
-
-  this.geometry = new _three.CubeGeometry(_width, _height, _length);
-  this.type = 'box'; //This is for the physics. Doesnt really belong in here.
-
-  //Go recursive if stop is not set
-  return stop ? this.geometry : new _Graphics2.default(this);
-};
+  return Cube;
+}(_Graphics.Meta);
 
 exports.default = Cube;
-},{"three":4,"../Graphics":8,"../../../Space":6}],26:[function(require,module,exports) {
+},{"three":4,"../Graphics":8}],26:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -61661,122 +61651,6 @@ var THREE = _interopRequireWildcard(_three);
 var _index = require('./src/index');
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
-/*
-new Meta({  
-
-    graphics: new Graphics({
-
-        geometry: new THREE.BoxGeometry(100,0.001,100),
-        material: new THREE.MeshPhongMaterial({color:0xff0000})
-    
-    }, true),
-
-    physics: false
-})
-*/
-
-console.log(new _index.Graphics({
-
-    position: { x: 0, y: 5, z: 0 },
-
-    geometry: new THREE.BoxGeometry(1, 1, 1),
-    material: new THREE.MeshPhongMaterial({ color: 0x0000ff })
-
-})
-//.move("up", 5)
-);
-/*
-new Meta({        
-    graphics: new Graphics({
-        geometry: new THREE.BoxGeometry(5,1,5),
-        material: new THREE.MeshPhongMaterial({color:0xfff000})
-    }, true),
-}).move("up",1)
-
-new Meta({
-    graphics: new Graphics({
-        geometry: new THREE.BoxGeometry(1,1,1),
-        material: new THREE.MeshPhongMaterial({color:0x0000ff})
-    }, true)
-
-}).move("up", 3)
-*/
-
-/*
-new Meta({
-    graphics: new Graphics({
-        model: 'helmet.gltf'
-    }, true)
-})
-.move("left", 3)
-.live("on", meta => {
-    meta.rotate("right", .01)
-})
-
-new Meta({
-    graphics: new Graphics({
-        model: 'Helmet.gltf'
-    }, true)
-})
-.move("right", 3)
-.live("on", meta => {
-    meta.rotate("left", .01)
-})
-*/
-
-/*
-new M('helmet.gltf')
-.m('u', 2)
-.l("o", m => 
-m.r("r", .01))
-*/
-
-/*
-new M('helmet.gltf')
-.m('b', 3)
-.l("o", m => 
-m.r("l", .01))
-*/
-
-/*
-const a = 3;
-for(let i = 0; i< a; i++){
-    for(let j = 0; j< a; j++){
-        for(let k = 0; k< a; k++){
-            new M('Duck.gltf')
-            .setPosition({
-                x: i*2,
-                y: j*2,
-                z: k*2
-            })
-        }
-    }
-}
-*/
-
-/*
-class Duck {
-    constructor(){
-        return new Model('Duck')
-    }
-}
-on('touch', (_) => {
-    new Duck().s(_)
-})
-*/
-
-/*
-class Duck extends Model {
-    constructor(){super('Duck')}
-}
-on('t', (_) => new Duck().s(_))
-*/
-
-/*
-const D = () => new Model('Duck')
-on('t', (_) => new Cube().s(_))
-*/
 },{"three":4,"./src/index":3}],30:[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -61806,7 +61680,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '49447' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '49372' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
@@ -61948,4 +61822,4 @@ function hmrAccept(bundle, id) {
   });
 }
 },{}]},{},[30,2], null)
-//# sourceMappingURL=/meta.23678307.map
+//# sourceMappingURL=/examples.basics.4f1ecbdc.map

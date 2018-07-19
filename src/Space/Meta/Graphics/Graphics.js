@@ -17,6 +17,8 @@ TYPE: 'box' // typ for physics
 
 let models = [];
 
+export {Meta}
+
 /** This class represents the visual representation of a Meta object. This is the only class in this library that is directly communicating with the 3D graphics libraray three.js.
 * @constructor
 * @param {Object} geometry
@@ -25,6 +27,23 @@ let models = [];
 export default class Graphics {
 
 constructor(props, stop = false){
+
+  //props
+  this.size = {
+    x: props!==undefined&&props.size!==undefined&&props.size.x!==undefined?props.size.x:1,
+    y: props!==undefined&&props.size!==undefined&&props.size.y!==undefined?props.size.y:1,
+    z: props!==undefined&&props.size!==undefined&&props.size.z!==undefined?props.size.z:1
+  };
+  this.position = {
+    x: props!==undefined&&props.position!==undefined&&props.position.x!==undefined?props.position.x:0,
+    y: props!==undefined&&props.position!==undefined&&props.position.y!==undefined?props.position.y:0,
+    z: props!==undefined&&props.position!==undefined&&props.position.z!==undefined?props.position.z:0        
+  }
+  this.rotation = {
+    x: props!==undefined&&props.rotation!==undefined&&props.rotation.x!==undefined?props.rotation.x:0,
+    y: props!==undefined&&props.rotation!==undefined&&props.rotation.y!==undefined?props.rotation.y:0,
+    z: props!==undefined&&props.rotation!==undefined&&props.rotation.z!==undefined?props.rotation.z:0                
+  };
   
   this.geometry = props!==undefined&&props.geometry!==undefined&&props.geometry!==true?props.geometry:new CubeGeometry();
   this.material = props!==undefined&&props.material!==undefined&&props.material!==true?props.material:new MeshPhongMaterial({color:Math.random()*0xffffff, side: DoubleSide});
@@ -32,8 +51,6 @@ constructor(props, stop = false){
   this.type = props!==undefined&&props.type!==undefined&&props.type!==true?props.type:_DEFAULT.TYPE;
 
   this.mesh = props!==undefined&&props.mesh!==undefined&&props.mesh!==true?props.mesh:new Mesh(this.geometry, this.material);
-
-  this.size = {};
 
   this.model = props.model!==undefined?props.model:undefined;
 
@@ -111,23 +128,26 @@ constructor(props, stop = false){
     .catch(error => console.error(error));
   })
 
+
 }
 
-this.physics = true;
+  //forward physics prop
+  this.physics = true;
+  if(props.p!==undefined)
+  this.physics  = props.p;
+  if(props.physics!==undefined)
+  this.physics  = props.physics;
 
-if(props.p!==undefined)
-this.physics  = props.p;
+  //Stop the recursion if stop is set
+  if(stop)
+  return this;
 
-if(props.physics!==undefined)
-this.physics  = props.physics;
-
-//Stop the recursion if stop is set
-if(stop)
-return this;
-
-//console.log('[Graphics] - Has no caller, so go to Meta first')
-return new Meta({graphics: this, physics: this.physics});
-
+  //console.log('[Graphics] - Has no caller, so go to Meta first')
+  return new Meta({
+    position: this.position, 
+    graphics: this, 
+    physics: this.physics
+  });
 }
 
 setSize(){
@@ -157,15 +177,14 @@ setSize(){
 }
 
 setPosition(position){
-this.mesh.position.copy(position)
-return this;
+  this.mesh.position.copy(position)
+  return this;
 }
 
 setRotation(rotation){
   this.mesh.rotation.x = rotation.x
   this.mesh.rotation.y = rotation.y
   this.mesh.rotation.z = rotation.z
-
   return this;
 }
 

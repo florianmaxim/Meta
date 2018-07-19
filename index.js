@@ -1,9 +1,48 @@
-
 import * as THREE from 'three';
 
 import {Model, M, Meta, Graphics, Ground, Cube, on} from './src/index';
 
-new Ground();
+/*
+new Meta({  
+
+    graphics: new Graphics({
+
+        geometry: new THREE.BoxGeometry(100,0.001,100),
+        material: new THREE.MeshPhongMaterial({color:0xff0000})
+    
+    }, true),
+
+    physics: false
+})
+*/
+
+console.log(
+new Graphics({
+
+    position: {x:0,y:5,z:0},
+
+    geometry: new THREE.BoxGeometry(1,1,1),
+    material: new THREE.MeshPhongMaterial({color:0x0000ff}),
+
+})
+//.move("up", 5)
+)
+/*
+new Meta({        
+    graphics: new Graphics({
+        geometry: new THREE.BoxGeometry(5,1,5),
+        material: new THREE.MeshPhongMaterial({color:0xfff000})
+    }, true),
+}).move("up",1)
+
+new Meta({
+    graphics: new Graphics({
+        geometry: new THREE.BoxGeometry(1,1,1),
+        material: new THREE.MeshPhongMaterial({color:0x0000ff})
+    }, true)
+
+}).move("up", 3)
+*/
 
 /*
 new Meta({
@@ -77,5 +116,5 @@ on('t', (_) => new Duck().s(_))
 
 /*
 const D = () => new Model('Duck')
-on('t', (_) => D().s(_))
+on('t', (_) => new Cube().s(_))
 */
