@@ -26,6 +26,34 @@ Furthermore this is an attempt to create the most accessible virtual reality lib
 * 🚀 Write one version of your code that works on any device (HTC Vive, Oculus Rift, Desktop, Mobile, etc.).
 * 🏰 Grab a cube now, move a castle soon!
 
+# 💐 Examples
+
+### The best way to learn Meta.js is to go through the examples.
+
+(You need to have Node.js (https://nodejs.org) installed.)
+
+(If you don't know how to use the terminal watch <a href="https://www.youtube.com/watch?v=jDINUSK7rXE" target="_blank">this</a>.)
+
+Clone a full copy of Meta.js:
+
+```script
+git clone https://github.com/florianmaxim/meta
+```
+
+Navigate to the examples directoy:
+```script
+cd examples
+```
+
+Select an example:
+```script
+cd basics.positioning
+```
+
+Run the example and open it in your browser:
+```script
+npm start
+```
 #  👩‍🚀 Usage
 
 ### Start within 3 minutes (via Parcel-Bundler):
@@ -73,35 +101,6 @@ Alternatively you can also put all steps together in a single line like this:
 
 ```script
 touch index.html index.js && echo '<html><body><script src="./index.js"></script></body></html>' >> ./index.html && echo "import {Ground, Cube, on} from 'meta-client';\nnew Ground();\non('touch', (data) => new Cube().set(data.position));" >> ./index.js && npm init -y && npm i parcel-bundler meta-client && parcel index.html
-```
-
-# 💐 Examples
-
-### The best way to learn Meta.js is to go through the examples.
-
-(You need to have Node.js (https://nodejs.org) installed.)
-
-(If you don't know how to use the terminal watch <a href="https://www.youtube.com/watch?v=jDINUSK7rXE" target="_blank">this</a>.)
-
-Clone a full copy of Meta.js:
-
-```script
-git clone https://github.com/florianmaxim/meta
-```
-
-Navigate to the examples directoy:
-```script
-cd examples
-```
-
-Select an example:
-```script
-cd basics.positioning
-```
-
-Run the example and open it in your browser:
-```script
-npm start
 ```
 
 # 🎉 Custom
