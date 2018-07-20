@@ -40,17 +40,12 @@ Clone a full copy of Meta.js:
 git clone https://github.com/florianmaxim/meta
 ```
 
-Navigate to the examples directoy:
-```script
-cd examples
-```
-
 Select an example:
 ```script
-cd basics.positioning
+cd examples/basics.positioning
 ```
 
-Run the example and open it in your browser:
+Run and open it in your browser:
 ```script
 npm start
 ```
