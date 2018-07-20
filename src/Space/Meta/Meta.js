@@ -126,6 +126,7 @@ export default class Meta {
     position = position!==undefined?position:this.position
     this.graphics.setPosition(position)
     this.position = position;
+    console.log(this.position)
     return this;
   }
   setRotation(rotation){
