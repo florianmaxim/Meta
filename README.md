@@ -10,7 +10,7 @@
 ## Accessible Javascript Library For Virtual Reality 🚀
 
 [![Latest NPM release][npm-badge]][npm-badge-url] [![Build Status](https://travis-ci.org/florianmaxim/Meta.svg?branch=master)](https://travis-ci.org/florianmaxim/Meta) [![Dependencies][dependencies-badge]][dependencies-badge-url] [![https://metajs.org](https://img.shields.io/badge/twitter-metajs_org-blue.svg)](https://twitter.com/metajs_org)
-<a href="https://badges.gitter.im/florianmaxim/meta">
+<a href="https://gitter.im/Meta_JS">
 <img src="https://badges.gitter.im/gitterHQ/gitter.png"/>
 </a>
 
