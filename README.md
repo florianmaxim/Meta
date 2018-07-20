@@ -4,6 +4,10 @@
 [npm-badge]: https://img.shields.io/npm/v/meta-client.svg
 [npm-badge-url]: https://www.npmjs.com/package/meta-client
 
+<a href="https://badges.gitter.im/florianmaxim/meta.png">
+<img src="https://badges.gitter.im/gitterHQ/gitter.png"/>
+</a>
+
 <img src="resources/logo.png" width="100" height="100"/>
 
 # Meta.js 👩‍🚀
