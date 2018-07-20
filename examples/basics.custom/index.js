@@ -58,16 +58,19 @@ class Yellow extends Meta {
 on('touch', (data) => {
 
     const r = 
+    
     new Red({
         position: data.position
     })
 
     const b = 
+
     new Blue({
         position: data.position
     })
 
     const y =
+
     new Yellow()
     .setPosition(data.position)
 
