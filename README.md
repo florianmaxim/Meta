@@ -54,7 +54,8 @@ Run the example and open it in your browser:
 ```script
 npm start
 ```
-#  👩‍🚀 Usage
+
+# 🎉 Custom
 
 ### Start within 3 minutes (via Parcel-Bundler):
 
@@ -101,14 +102,6 @@ Alternatively you can also put all steps together in a single line like this:
 
 ```script
 touch index.html index.js && echo '<html><body><script src="./index.js"></script></body></html>' >> ./index.html && echo "import {Ground, Cube, on} from 'meta-client';\nnew Ground();\non('touch', (data) => new Cube().set(data.position));" >> ./index.js && npm init -y && npm i parcel-bundler meta-client && parcel index.html
-```
-
-# 🎉 Custom
-
-```script
-git clone https://github.com/florianmaxim/meta
-npm install
-npm run build
 ```
 
 # 📕 Wiki
