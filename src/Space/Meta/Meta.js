@@ -66,6 +66,7 @@ export default class Meta {
       this._physics = props!==undefined&&props.p!==undefined?props.p:true;
       this._physics = props!==undefined&&props.physics!==undefined?props.physics:true;
 
+      this.setPosition()
       //Start Physics (with properties fetched above)
       this.setPhysics();
 
@@ -126,7 +127,7 @@ export default class Meta {
     position = position!==undefined?position:this.position
     this.graphics.setPosition(position)
     this.position = position;
-    console.log(this.position)
+    this.setPhysics()
     return this;
   }
   setRotation(rotation){
