@@ -4,16 +4,15 @@
 [npm-badge]: https://img.shields.io/npm/v/meta-client.svg
 [npm-badge-url]: https://www.npmjs.com/package/meta-client
 
-<a href="https://badges.gitter.im/florianmaxim/meta.png">
-<img src="https://badges.gitter.im/gitterHQ/gitter.png"/>
-</a>
-
 <img src="resources/logo.png" width="100" height="100"/>
 
 # Meta.js 👩‍🚀
 ## Accessible Javascript Library For Virtual Reality 🚀
 
 [![Latest NPM release][npm-badge]][npm-badge-url] [![Build Status](https://travis-ci.org/florianmaxim/Meta.svg?branch=master)](https://travis-ci.org/florianmaxim/Meta) [![Dependencies][dependencies-badge]][dependencies-badge-url] [![https://metajs.org](https://img.shields.io/badge/twitter-metajs_org-blue.svg)](https://twitter.com/metajs_org)
+<a href="https://badges.gitter.im/florianmaxim/meta">
+<img src="https://badges.gitter.im/gitterHQ/gitter.png"/>
+</a>
 
 # 🎊 Features
 
