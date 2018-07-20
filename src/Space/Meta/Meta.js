@@ -66,8 +66,6 @@ export default class Meta {
       this._physics = props!==undefined&&props.p!==undefined?props.p:true;
       this._physics = props!==undefined&&props.physics!==undefined?props.physics:true;
 
-      this.setPosition()
-      //Start Physics (with properties fetched above)
       this.setPhysics();
 
       //Start Presence
@@ -123,13 +121,21 @@ export default class Meta {
     this.scale = scale;
     return this;
   }
+
+  s(position){
+    return this.setPosition(position);
+  }
+  set(position){
+    return this.setPosition(position);
+  }
   setPosition(position){ 
     position = position!==undefined?position:this.position
     this.graphics.setPosition(position)
     this.position = position;
-    this.setPhysics()
+    this.setPhysics();
     return this;
   }
+
   setRotation(rotation){
     rotation = rotation!==undefined?rotation:this.rotation
     this.graphics.setRotation(rotation)
@@ -273,24 +279,6 @@ export default class Meta {
     //this.graphics.color(color);
     this._color = color;
 
-    return this;
-  }
-
-  s(props){
-    return this.set(props)
-  }
-  set(position){
-
-    position = position.position || position;
-
-    // log(position, name);
-
-    //Set graphics
-    this.graphics.mesh.position.copy(position);
-
-    this.setSize();
-    this.setPosition();
-    this.physics();
     return this;
   }
 
