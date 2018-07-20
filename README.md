@@ -80,11 +80,9 @@ touch index.html index.js
 ```
 6. Add the following into index.js.
 ```javascript
-import {Ground, Cube, on} from 'meta-client';
+import {on, Cube} from 'meta-client';
 
-new Ground();
-
-on('touch', (data) => new Cube().set(data.position));
+on('touch', (data) => new Cube({position:data.position});
 ```  
 7. Start:
 ```script
