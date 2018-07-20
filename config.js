@@ -27,7 +27,7 @@ export default {
             camera: {
                 position: {
                     x: 0,
-                    y: 1.6,
+                    y: .5,
                     z: 5
                 }
             },  

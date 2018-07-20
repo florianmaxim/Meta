@@ -13,16 +13,9 @@ import Space    from '../Space';
 import Graphics  from './Graphics/Graphics';
 import Existence from './Existence/Existence';
 
-import Cube     from './Graphics/Geometries/Cube';
-import Sphere   from './Graphics/Geometries/Sphere';
-
 import * as OIMO  from 'oimo';
 
 const name = 'Meta';
-
-let set = false;
-
-let scope;
 
 let world = new OIMO.World();
 let bodies = [];
@@ -40,19 +33,31 @@ export default class Meta {
 
   constructor(props){
 
-      scope = this;
-
       this.name = 'Meta';
 
-      //lifes
       this.lifes = [];
-
-      //events
       this.events = [];
 
       //states (merge into {state})
       this._entered = null;
       this._touched = false;
+
+      //props
+      this.scale = {
+        x:props!==undefined&&props.scale!==undefined&&props.scale.x!==undefined?props.scale.x:1,
+        y:props!==undefined&&props.scale!==undefined&&props.scale.y!==undefined?props.scale.y:1,
+        z:props!==undefined&&props.scale!==undefined&&props.scale.z!==undefined?props.scale.z:1
+      };
+      this.rotation = {
+        x:props!==undefined&&props.rotation!==undefined&&props.rotation.x!==undefined?props.rotation.x:0,
+        y:props!==undefined&&props.rotation!==undefined&&props.rotation.y!==undefined?props.rotation.y:0,
+        z:props!==undefined&&props.rotation!==undefined&&props.rotation.z!==undefined?props.rotation.z:0
+      };
+      this.position = {
+        x:props!==undefined&&props.position!==undefined&&props.position.x!==undefined?props.position.x:0,
+        y:props!==undefined&&props.position!==undefined&&props.position.y!==undefined?props.position.y:0,
+        z:props!==undefined&&props.position!==undefined&&props.position.z!==undefined?props.position.z:0
+      };
 
       //e,g,p existence, graphics, physics
       this.existence = props!==undefined&&props.existence!==undefined?props.existence:new Existence();
@@ -61,16 +66,8 @@ export default class Meta {
       this._physics = props!==undefined&&props.p!==undefined?props.p:true;
       this._physics = props!==undefined&&props.physics!==undefined?props.physics:true;
 
-      this.color();
-
-      this.rotation = {x:0,y:0,z:0};
-      this.position = {x:0,y:0,z:0};
-
-      //Get properties from visual representation (mesh)
-      this.setSize();
-
       //Start Physics (with properties fetched above)
-      this.physics();
+      this.setPhysics();
 
       //Start Presence
       Space.get().add(this);
@@ -104,7 +101,6 @@ export default class Meta {
     }
     return this;
   }
-
   go(eventName, ...rest){
     if(this.events[eventName]){
       this.events[eventName].forEach(cb =>{
@@ -114,64 +110,35 @@ export default class Meta {
     return this;
   }
 
-
-  setPosition(){ 
-    //Get position from visual representation (mesh)
-    //and assign it to this  
-
-   this.position = {
-    x: this.graphics.mesh.position.x,
-    y: this.graphics.mesh.position.y,
-    z: this.graphics.mesh.position.z
+  setGraphics(){
+    this.setScale();
+    this.setPosition();
+    this.setRotation();
+    return this;
   }
-
-   //console.log('[this.position]'+this.position)
-   return this;
+  setScale(scale){
+    scale = scale!==undefined?scale:this.scale
+    this.graphics.setScale(scale)
+    this.scale = scale;
+    return this;
   }
-
-  setRotation(){
-    //Get rotation from visual representation (mesh)
-    //and assign it to this 
-
-    this.rotation = {
-      x: this.graphics.mesh.rotation._x.x,
-      y: this.graphics.mesh.rotation._x.y,
-      z: this.graphics.mesh.rotation._x.z
-    }
-
-    log(JSON.stringify(this.rotation), name)
+  setPosition(position){ 
+    position = position!==undefined?position:this.position
+    this.graphics.setPosition(position)
+    this.position = position;
+    return this;
+  }
+  setRotation(rotation){
+    rotation = rotation!==undefined?rotation:this.rotation
+    this.graphics.setRotation(rotation)
+    this.rotation = rotation;
     return this;
   }
 
-  setSize(){
-    //Define Meta's Size According To Graphic's Dimensions
-    let box3 = new Box3().setFromObject(this.graphics.mesh);
-
-    let x = box3.max.x - box3.min.x;
-    let y = box3.max.y - box3.min.y;
-    let z = box3.max.z - box3.min.z;
-
-    switch(this.graphics.type){
-      case 'box':
-        this.size = [x,y,z]
-      break;
-      case 'sphere':
-        this.size = [x/2]
-      break;
-      case 'cylinder':
-        this.size = [x/2,y,z/2]
-      break;
-    }
-
-    //console.log('[Size]'+this.size);
-
-  }
-
-
   p(m){
-    return this.physics(m);
+    return this.setPhysics(m);
   }
-  physics(_physics){
+  setPhysics(_physics){
 
     //If physics have been set already and the same parameter was passed leave directly
     if(this.body!==undefined&&_physics===this._physics) return;
@@ -188,19 +155,13 @@ export default class Meta {
     //Meaning it had physics before, which were stopped setting _physics to false.
     if(this.body!==undefined){
       this.body.remove();
-      ////console.log('[Meta].physics() - Already have a body, so set this.body = null to get a new one]')
     }
-
-    // console.log('[Meta].physics()-this._physics:'+this._physics);
-    // console.log('[Meta].physics()-_mode:'+mode);
-
-    //alert(this.rotation.y)
 
     const body = {
 
-      type: this.graphics.type,
+      type: 'box',
 
-      size: this.size,
+      size: [this.scale.x,this.scale.y,this.scale.z],
 
       pos: [this.position.x,this.position.y,this.position.z],
       rot: [this.rotation.x,this.rotation.y,this.rotation.z],
@@ -307,7 +268,7 @@ export default class Meta {
         break;
       }
 
-    this.graphics.color(color);
+    //this.graphics.color(color);
     this._color = color;
 
     return this;

@@ -1,46 +1,46 @@
 import {CubeGeometry,
-        MeshBasicMaterial,
         MeshPhongMaterial,
         Mesh,
         DoubleSide} from 'three';
 
 import Meta from '../Meta';
 
-const _DEFAULT = {
-  TYPE: 'box' // typ for physics
-}
-
 export default class Graphics {
 
   constructor(props, stop = false){
 
+    this.position = {
+      x:props!==undefined&&props.position!==undefined&&props.position.x!==undefined?props.position.x:0,
+      y:props!==undefined&&props.position!==undefined&&props.position.y!==undefined?props.position.y:0,
+      z:props!==undefined&&props.position!==undefined&&props.position.z!==undefined?props.position.z:0
+    };
+
     this.geometry = props!==undefined&&props.geometry!==undefined&&props.geometry!==true?props.geometry:new CubeGeometry();
     this.material = props!==undefined&&props.material!==undefined&&props.material!==true?props.material:new MeshPhongMaterial({color:Math.random()*0xffffff, side: DoubleSide});
-
-    this.type = props!==undefined&&props.type!==undefined&&props.type!==true?props.type:_DEFAULT.TYPE;
-
     this.mesh = props!==undefined&&props.mesh!==undefined&&props.mesh!==true?props.mesh:new Mesh(this.geometry, this.material);
 
-    this.physics = true;
-
-    if(props.p!==undefined)
-      this.physics  = props.p;
-
-    if(props.physics!==undefined)
-      this.physics  = props.physics;
-
-    //Stop the recursion if stop is set
     if(stop)
       return this;
 
-    //console.log('[Graphics] - Has no caller, so go to Meta first')
-
-    return new Meta({graphics: this, physics: this.physics});
+    return new Meta({graphics: this, position: this.position});
 
   }
 
-  color(color){
-    this.mesh.material.color.set(color);
+  setScale(scale){
+    scale = scale!==undefined?scale:this.scale
+    this.mesh.scale.set({
+      x:scale.x,
+      y:scale.y,
+      z:scale.z
+    })
+  }
+  setPosition(position){
+    position = position!==undefined?position:this.position
+    this.mesh.position.copy(position)
+  }
+  setRotation(rotation){
+    rotation = rotation!==undefined?rotation:this.rotation
+    //this.mesh.rotation.copy(rotation)
   }
 
   add(instance){
