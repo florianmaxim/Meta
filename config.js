@@ -7,7 +7,8 @@ export default {
     log: false,
 
     space: {
-        color: 0xe0e0e0
+        //color: 0xe0e0e0
+        color: 0xffffff
     },
 
     device: {

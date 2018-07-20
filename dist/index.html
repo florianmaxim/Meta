@@ -1,0 +1,58 @@
+<html>
+    <head>
+        <style>
+            @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+            @import url('https://fonts.googleapis.com/css?family=Open+Sans');
+            .text{
+                position: fixed;
+                font-family: 'Source Sans Pro', sans-serif;
+                //font-family: 'Open Sans', sans-serif;
+                font-size: 50pt;
+                line-height:50pt;
+                width: 100vw;
+                height:100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-align: left;
+                color: blue;
+                font-style: italic;
+                //text-shadow:-1px -1px 0 #000, 1px -1px 0 #000,-1px 1px 0 #000,1px 1px 0 #000;
+            }
+        </style>
+    </head>
+    <body>
+        <script src="/meta7.f9efec60.js"></script>
+        <div class="text">
+            on('touch', (data) => {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;new Blue({<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;position: data.position<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;})<br>
+            })<br>  
+            <!--
+            new Red()</br>
+            
+            class Red extends Meta {</br>
+            &nbsp;&nbsp;&nbsp;&nbsp;constructor(props){</br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;super(props = {...})</br>
+            &nbsp;&nbsp;&nbsp;&nbsp;}</br>
+            }
+            new Meta({</br>
+                &nbsp;&nbsp;&nbsp;&nbsp;graphics: new Graphics({</br>
+                    &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;model: 'Helmet.gltf'</br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;}, true)</br>
+            }).live("on", meta => {</br>
+                &nbsp;&nbsp;&nbsp;&nbsp;meta.rotate("left", .01)</br>
+            })
+            
+            new Model('helmet')</br>
+            .live("on", meta => {</br>
+            &nbsp;&nbsp;&nbsp;&nbsp;meta.rotate("right", .01)</br>
+            })
+            new M('helmet')</br>
+            .l("o", m =></br>
+            m.r("r", .01))</br>
+             -->
+        </div>
+    </body>
+</html>

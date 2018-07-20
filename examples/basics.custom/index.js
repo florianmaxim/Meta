@@ -4,7 +4,7 @@ import {on, Graphics, Meta} from '../../src';
 
 class P {
     constructor(){
-        this.name = "Papa"
+        this.name = "Dad"
     }
     intro(){
         console.log(`I am ${this.name}.`)
@@ -16,7 +16,7 @@ new P().intro()
 class F extends P {
     constructor(){
         super()
-        this.name = "Flo"
+        this.name = "Me"
     }
 }
 
@@ -58,7 +58,7 @@ class Yellow extends Meta {
 on('touch', (data) => {
 
     const r = 
-    
+
     new Red({
         position: data.position
     })
@@ -72,7 +72,9 @@ on('touch', (data) => {
     const y =
 
     new Yellow()
-    .setPosition(data.position)
+    //.setPosition(data.position)
+    //.set(data.position)
+    .s(data.position)
 
     console.log(r,b,y)
     
