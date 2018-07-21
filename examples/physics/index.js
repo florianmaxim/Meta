@@ -4,6 +4,7 @@ import {Cube, Graphics, Meta, on} from '../../src';
 
 on('touch', (data) => {
 
+
     new Cube()  
     
     new Graphics({
@@ -19,7 +20,9 @@ on('touch', (data) => {
             geometry: new THREE.BoxGeometry(1,1,1),
             material: new THREE.MeshPhongMaterial({color: 0xff0000})
 
-        }, true)
+        }, true),
+
+        physics: null
 
     })
     
