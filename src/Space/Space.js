@@ -16,6 +16,8 @@ import Device   from './Device/Device';
 
 import Meta   from './Meta/Meta';
 import Graphics from './Meta/Graphics/Graphics';
+import Physics from './Meta/Physics/Physics';
+
 import Cube     from './Meta/Graphics/Geometries/Cube';
 
 let scope;
@@ -254,12 +256,12 @@ export default class Space {
 
     let time = clock.getElapsedTime()
 
-    this.Meta.forEach((Meta) => {
+    this.Meta.forEach((Meta, index) => {
 
       //Physics
-      if(Meta._physics!==null&&Meta.body!==undefined){
-        Meta.graphics.mesh.position.copy( Meta.body.getPosition() );
-        Meta.graphics.mesh.quaternion.copy( Meta.body.getQuaternion() );
+      if(Meta.physics!==null&&Meta.physics.body!==undefined){
+        Meta.graphics.mesh.position.copy( Meta.physics.body.getPosition() );
+        Meta.graphics.mesh.quaternion.copy( Meta.physics.body.getQuaternion() );
       }else{
 
         //Lifes
@@ -288,7 +290,9 @@ export default class Space {
     scope.device.render();
 
     //Run physics system (oimo lybrary)
-    Meta.getWorld().step();
+    Physics.getWorlds().forEach((world) => {
+      world.step()
+    })
 
     //Run graphics system (three.js libraray)
     scope.renderer.render(scope.scene, scope.camera);

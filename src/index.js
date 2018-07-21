@@ -6,7 +6,10 @@ import {on,timer}from './Space/Space';
 import Meta    from './Space/Meta/Meta';
 
 import Graphics  from './Space/Meta/Graphics/Graphics';
+import Physics from './Space/Meta/Physics/Physics';
 import Existence from './Space/Meta/Existence/Existence';
+
+import {World, Body} from './Space/Meta/Physics/Physics';
 
 import Cube      from './Space/Meta/Graphics/Geometries/Cube';
 import Sphere    from './Space/Meta/Graphics/Geometries/Sphere';
@@ -46,6 +49,9 @@ const r = (min, max) => {
   const _max = max!==undefined?max:0;
   return (Math.random() * (_max - _min)) + _min;
 }
+
+export {Physics}
+export {World, Body};
 
 export {r};
 export {r as random};

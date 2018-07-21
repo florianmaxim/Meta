@@ -4,13 +4,13 @@ import {Cube, Graphics, Meta, on} from '../../src';
 
 on('touch', (data) => {
 
-    new Cube()  
+    new Cube();  
     
     new Graphics({
 
         geometry: new THREE.BoxGeometry(1,1,1)
 
-    })
+    });
     
     new Meta({
 
@@ -21,6 +21,6 @@ on('touch', (data) => {
 
         }, true)
 
-    })
+    });
     
 });

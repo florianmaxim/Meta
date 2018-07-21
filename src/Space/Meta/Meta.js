@@ -8,17 +8,10 @@ import {CubeGeometry,
         Box3} from 'three';
 
 import Space    from '../Space';
-// import Physics  from '../Physics/Physics';
 
-import Graphics  from './Graphics/Graphics';
 import Existence from './Existence/Existence';
-
-import * as OIMO  from 'oimo';
-
-const name = 'Meta';
-
-let world = new OIMO.World();
-let bodies = [];
+import Graphics  from './Graphics/Graphics';
+import Physics  from './Physics/Physics';
 
 /** This class represents a Meta object.
 * @constructor
@@ -63,11 +56,8 @@ export default class Meta {
       this.existence = props!==undefined&&props.existence!==undefined?props.existence:new Existence();
       this.graphics  = props!==undefined&&props.graphics!==undefined?props.graphics:new Graphics();
 
-      this._physics = props!==undefined&&props.p!==undefined?props.p:true;
-      this._physics = props!==undefined&&props.physics!==undefined?props.physics:true;
-
-      this.setPhysics();
-
+      this.physics = new Physics(props)
+      
       //Start Presence
       Space.get().add(this);
 
@@ -143,54 +133,10 @@ export default class Meta {
     return this;
   }
 
-  p(m){
-    return this.setPhysics(m);
+  p(physics){
+    return this.setPhysics(physics);
   }
-  setPhysics(_physics){
-
-    //If physics have been set already and the same parameter was passed leave directly
-    if(this.body!==undefined&&_physics===this._physics) return;
-
-    _physics = _physics!==undefined?_physics:this._physics;
-
-    if(_physics===null){
-      this._physics = null;
-      return this;
-    }
-
-    let mode = _physics;
-
-    //Meaning it had physics before, which were stopped setting _physics to false.
-    if(this.body!==undefined){
-      this.body.remove();
-    }
-
-    const body = {
-
-      type: 'box',
-
-      size: [this.scale.x,this.scale.y,this.scale.z],
-
-      pos: [this.position.x,this.position.y,this.position.z],
-      rot: [this.rotation.x,this.rotation.y,this.rotation.z],
-      
-      move: mode,
-      density: mode!==undefined&&mode.density!==undefined?mode.density:1,
-      friction: mode!==undefined&&mode.friction!==undefined?mode.friction:.5,
-      restitution: mode!==undefined&&mode.restitution!==undefined?mode.restitution:.5,
-      belongsTo: mode!==undefined&&mode.belongsTo!==undefined?mode.belongsTo:1,
-      collidesWith: mode!==undefined&&mode.collidesWith!==undefined?mode.collidesWith:0xffffffff,
-    
-    }
-
-    //log(body, name);
-
-    //@todo Should be: Physics.add(body);
-    this.body = world.add(body); //CLUE: This constantly add the current body position into this.body
-
-    //IMPORTANT: Save the new state!
-    this._physics = _physics;
-    return this;
+  setPhysics(){
   }
 
   //Add life to Meta's life.
@@ -370,17 +316,4 @@ export default class Meta {
     },ms)
   }
 
-
-  static getWorld(){
-    return world;
-  }
-
-  static getBodies(){
-    return bodies;
-  }
-
-  static clear (){
-    bodies = [];
-    world = new OIMO.World();
-  }
 }
