@@ -1,8 +1,6 @@
 import * as THREE from 'three';
 
-import {Ground, Cube, Graphics, Meta, on} from '../../src';
-
-//new Ground();
+import {Cube, Graphics, Meta, on} from '../../src';
 
 on('touch', (data) => {
 
