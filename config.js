@@ -29,7 +29,7 @@ export default {
                 position: {
                     x: 0,
                     y: .5,
-                    z: 5
+                    z: 3.5
                 }
             },  
             globe: {

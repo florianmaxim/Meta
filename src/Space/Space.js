@@ -6,6 +6,7 @@ import {WebGLRenderer,
         PerspectiveCamera,
         AmbientLight,
         DirectionalLight,
+        PointLight,
         Mesh,
         Object3D,
         Vector3,
@@ -120,15 +121,14 @@ export default class Space {
     this.camera = new PerspectiveCamera(55, innerWidth / innerHeight, .01, 1000);
     this.scene.add(this.camera);
 
-    let light = new AmbientLight(0xffffff, .5)
-        light.position.set(25,50,25);
+    let light = new AmbientLight(0xffffff, .25)
     this.scene.add(light);
 
-        light = new DirectionalLight(0xffffff, 1)
+        light = new PointLight(0xffffff, 1)
         light.position.set(25,25,25);
     this.scene.add(light);
 
-        light = new DirectionalLight(0xffffff, 1)
+        light = new PointLight(0xffffff, 1)
         light.position.set(-25,25,-25);
     this.scene.add(light);
 
@@ -259,7 +259,7 @@ export default class Space {
     this.Meta.forEach((Meta, index) => {
 
       //Physics
-      if(Meta.physics!==null&&Meta.physics.body!==undefined){
+      if(Meta.physics!==undefined&&Meta.physics!==null&&Meta.physics.body!==undefined){
         Meta.graphics.mesh.position.copy( Meta.physics.body.getPosition() );
         Meta.graphics.mesh.quaternion.copy( Meta.physics.body.getQuaternion() );
       }else{

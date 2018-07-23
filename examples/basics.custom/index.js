@@ -47,6 +47,7 @@ class Blue extends Meta {
 class Yellow extends Meta {
     constructor(props){
         super(props = {
+            position: props.position,
             graphics: new Graphics({
                 geometry: new THREE.SphereGeometry(.5,16,16),
                 material: new THREE.MeshPhongMaterial({color:0xffff00}),              
@@ -71,10 +72,9 @@ on('touch', (data) => {
 
     const y =
 
-    new Yellow()
-    //.setPosition(data.position)
-    //.set(data.position)
-    .s(data.position)
+    new Yellow({
+        position: data.position
+    })
 
     console.log(r,b,y)
     

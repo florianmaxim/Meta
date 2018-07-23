@@ -54,9 +54,8 @@ export default class Meta {
 
       //e,g,p existence, graphics, physics
       this.existence = props!==undefined&&props.existence!==undefined?props.existence:new Existence();
-      this.graphics  = props!==undefined&&props.graphics!==undefined?props.graphics:new Graphics();
-
-      this.physics = new Physics(props)
+      this.graphics  = props!==undefined&&props.graphics!==undefined?props.graphics:new Graphics(props);
+      this.physics = props!==undefined&&props.physics!==undefined?props.physics:new Physics(props)
       
       //Start Presence
       Space.get().add(this);
@@ -122,7 +121,6 @@ export default class Meta {
     position = position!==undefined?position:this.position
     this.graphics.setPosition(position)
     this.position = position;
-    this.setPhysics();
     return this;
   }
 
@@ -137,6 +135,7 @@ export default class Meta {
     return this.setPhysics(physics);
   }
   setPhysics(){
+    this.physics.setPosition
   }
 
   //Add life to Meta's life.

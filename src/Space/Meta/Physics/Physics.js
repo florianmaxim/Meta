@@ -7,8 +7,6 @@ class Body {
 
     constructor(props){
 
-        console.log(props.move)
-
         //props
         this.scale = {
             x:props!==undefined&&props.scale!==undefined&&props.scale.x!==undefined?props.scale.x:1,
@@ -26,9 +24,11 @@ class Body {
             z:props!==undefined&&props.position!==undefined&&props.position.z!==undefined?props.position.z:0
         };
 
+        this.type = props!==undefined&&props.type!==undefined?props.type:'box'
+
         const body = {
 
-            type: 'box',
+            type: this.type,
       
             size: [this.scale.x,this.scale.y,this.scale.z],
             pos: [this.position.x,this.position.y,this.position.z],
@@ -36,12 +36,14 @@ class Body {
             
             move: props!==undefined&&props.move!==undefined?props.move:true,
             density: 1,
-            friction: .5,
-            restitution: .5,
-            belongsTo: 1,
+            friction: 0.2,
+            restitution: 0.2,
+            belongsTo: 1, // The bits of the collision groups to which the shape belongs.
             collidesWith: 0xffffffff
           
         }
+
+        console.log(body)
 
         return body;
     }
@@ -66,6 +68,8 @@ export default class Physics {
         }
 
         this.body = this.world.add(this.body);
+
+        return this;
     }
 
     static getWorlds(){

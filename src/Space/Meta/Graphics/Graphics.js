@@ -19,6 +19,10 @@ export default class Graphics {
     this.material = props!==undefined&&props.material!==undefined&&props.material!==true?props.material:new MeshPhongMaterial({color:Math.random()*0xffffff, side: DoubleSide});
     this.mesh = props!==undefined&&props.mesh!==undefined&&props.mesh!==true?props.mesh:new Mesh(this.geometry, this.material);
 
+    this.type = props!==undefined&&props.type!==undefined?props.type:'box'
+
+    this.setPosition();
+
     if(stop)
       return this;
 
@@ -37,10 +41,12 @@ export default class Graphics {
   setPosition(position){
     position = position!==undefined?position:this.position
     this.mesh.position.copy(position)
+    return this;
   }
   setRotation(rotation){
     rotation = rotation!==undefined?rotation:this.rotation
-    //this.mesh.rotation.copy(rotation)
+    this.mesh.rotation.copy(rotation)
+    return this;
   }
 
   add(instance){

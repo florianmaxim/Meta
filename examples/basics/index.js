@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 
-import {Cube, Graphics, Meta, on} from '../../src';
+import {Cube, Graphics, Physics, Body, Meta, on} from '../../src';
 
 on('touch', (data) => {
 
@@ -11,7 +11,7 @@ on('touch', (data) => {
         geometry: new THREE.BoxGeometry(1,1,1)
 
     });
-    
+   
     new Meta({
 
         graphics: new Graphics({
