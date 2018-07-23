@@ -58806,7 +58806,7 @@ var _src = require('../../src');
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 /* 
-    Example: Physical bodies without graphics
+    Example: Meta objects without graphics but physical bodies
     
     By setting the graphical appearence to 'null
     the meta object becomes invisible while it's

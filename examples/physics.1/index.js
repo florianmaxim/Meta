@@ -1,5 +1,5 @@
 /* 
-    Example: Physical bodies without graphics
+    Example: Meta objects without graphics but physical bodies
     
     By setting the graphical appearence to 'null
     the meta object becomes invisible while it's
