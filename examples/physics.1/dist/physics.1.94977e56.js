@@ -42497,7 +42497,7 @@ exports.default = {
             camera: {
                 position: {
                     x: 0,
-                    y: .5,
+                    y: 0,
                     z: 3.5
                 }
             },
@@ -56686,8 +56686,6 @@ var Body = function Body(props) {
 
     };
 
-    console.log(body);
-
     return body;
 };
 
@@ -58807,7 +58805,44 @@ var _src = require('../../src');
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
+/* 
+    Example: Physical bodies without graphics
+    
+    By setting the graphical appearence to 'null
+    the meta object becomes invisible while it's
+    physical body still affects other objects in
+    the same physical world.
+*/
+
 var mode = false;
+
+new _src.Meta({
+
+    graphics: new _src.Graphics({
+
+        geometry: new THREE.BoxGeometry(100, 1, 100),
+        material: new THREE.MeshPhongMaterial({ color: 0xff0000 })
+
+    }, true),
+
+    physics: new _src.Physics({
+
+        body: new _src.Body({
+            scale: {
+                x: 100,
+                y: 1,
+                z: 100
+            },
+            position: {
+                x: 0,
+                y: -1,
+                z: 0
+            },
+            type: 'box',
+            move: false
+        })
+    })
+});
 
 new _src.Meta({
 
@@ -58818,12 +58853,12 @@ new _src.Meta({
         body: new _src.Body({
             scale: {
                 x: 2,
-                y: 1,
-                z: 10
+                y: 2,
+                z: 2
             },
             position: {
                 x: 0,
-                y: 1,
+                y: 0,
                 z: 0
             },
             type: 'box',
@@ -58840,7 +58875,6 @@ new _src.Meta({
 
         graphics: new _src.Graphics({
 
-            //position: data.position, //Not necessary here, position is defined by physics later 
             geometry: new THREE.SphereGeometry(.1, 32, 32),
             material: mode ? new THREE.MeshPhongMaterial({ color: 0xffff00 }) : new THREE.MeshPhongMaterial({ color: 0x0000ff })
 
@@ -58860,11 +58894,9 @@ new _src.Meta({
             })
         })
 
-        //physics: false,
-
     });
 });
-},{"three":3,"../../src":4}],30:[function(require,module,exports) {
+},{"three":3,"../../src":4}],36:[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 
@@ -58893,7 +58925,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '49438' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '49559' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
@@ -59034,5 +59066,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.parcelRequire, id);
   });
 }
-},{}]},{},[30,2], null)
+},{}]},{},[36,2], null)
 //# sourceMappingURL=/physics.1.94977e56.map

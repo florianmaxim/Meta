@@ -44,8 +44,6 @@ class Body {
           
         }
 
-        console.log(body)
-
         return body;
     }
 
