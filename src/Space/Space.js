@@ -111,7 +111,7 @@ export default class Space {
     this.renderer.domElement.style.left = '0';
     this.renderer.domElement.style.top = '0';
 
-    this.renderer.animate( scope.render );
+    this.renderer.setAnimationLoop( scope.render );
 
     document.body.appendChild(this.renderer.domElement);
 
