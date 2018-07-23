@@ -1,3 +1,9 @@
+/* 
+    Example: Meta objects with static physical bodies
+    
+    *in progress*
+*/
+
 import * as THREE from 'three';
 
 import {Graphics, Physics, Body, Meta, on} from '../../src';
