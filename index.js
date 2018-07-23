@@ -1,81 +1,81 @@
 import * as THREE from 'three';
 
-import {on, Graphics, Meta} from './src';
+import {Graphics, Physics, Body, Meta, on} from './src';
 
-class P {
-    constructor(){
-        this.name = "Papa"
-    }
-    intro(){
-        console.log(`I am ${this.name}.`)
-    }
-}
+let mode = false;
 
-new P().intro()
+new Meta({
 
-class F extends P {
-    constructor(){
-        super()
-        this.name = "Flo"
-    }
-}
+    graphics: new Graphics({
 
-new F().intro()
+        geometry: new THREE.BoxGeometry(100,1,100),
+        material: new THREE.MeshPhongMaterial({color: 0xff0000})
 
-class Red extends Graphics {
-    constructor(props){
-        super(props = {
-            geometry: new THREE.SphereGeometry(.5,16,16),
-            material: new THREE.MeshPhongMaterial({color:0xff0000}),
-            position: props.position
+    }, true),
+
+    physics: new Physics({
+
+        body: new Body({
+            scale: {
+                x:100,
+                y:1,
+                z:100
+            },
+            position: {
+                x:0,
+                y:-1,
+                z:0
+            },
+            type: 'box',
+            move: false
         })
-    }
-}
-
-class Blue extends Meta {
-    constructor(props){
-        super(props = {
-            position: props.position,
-            graphics: new Graphics({
-                geometry: new THREE.SphereGeometry(.5,16,16),
-                material: new THREE.MeshPhongMaterial({color:0x0000ff}),              
-            }, true)
-        })
-    }
-}
-
-class Yellow extends Meta {
-    constructor(props){
-        super(props = {
-            graphics: new Graphics({
-                geometry: new THREE.SphereGeometry(.5,16,16),
-                material: new THREE.MeshPhongMaterial({color:0xffff00}),              
-            }, true)
-        })
-    }
-}
+    }),
+})
 
 on('touch', (data) => {
 
-    const r = 
+    mode = !mode
 
-    new Red({
-        position: data.position
-    })
+    for(let i = -2.5; i < 5; i++){
 
-    const b = 
+        for(let j = -2.5; j < 5; j++){
 
-    new Blue({
-        position: data.position
-    })
 
-    const y =
+            new Meta({
 
-    new Yellow()
-    //.setPosition(data.position)
-    //.set(data.position)
-    .s(data.position)
+                position: data.position,
 
-    console.log(r,b,y)
+                graphics: new Graphics({
+
+                    //position: data.position, //Not necessary here, position is defined by physics later 
+                    geometry: new THREE.SphereGeometry(.25,32,32),
+                    material: mode?new THREE.MeshPhongMaterial({color: 0xff0000}):new THREE.MeshPhongMaterial({color: 0x0000ff})
+
+                }, true),
+
+                physics: new Physics({
+
+                    body: new Body({
+                        scale: {
+                            x:.25,
+                            y:.25,
+                            z:.25
+                        },
+                        position: {
+                            x: i,
+                            y: 2,
+                            z: j
+                        },
+                        type: 'sphere',
+                        move: true
+                    })
+                }),
+
+                //physics: false,
+
+            })
+
+        }
+    }
     
 });

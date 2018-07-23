@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 
-import {Cube, Graphics, Physics, Body, Meta, on} from '../../src';
+import {Cube, Graphics, Physics, Body, Meta, on} from './src';
 
 let mode = false;
 
