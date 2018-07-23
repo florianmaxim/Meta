@@ -218,8 +218,9 @@ export default class Space {
 
   }
 
-  start(Meta){
-    this.container.add(Meta.graphics.mesh);
+  start(meta){
+    if(meta.graphics&&meta.graphics.mesh)
+    this.container.add(meta.graphics.mesh);
   }
 
   remove(Meta){
@@ -259,7 +260,7 @@ export default class Space {
     this.Meta.forEach((Meta, index) => {
 
       //Physics
-      if(Meta.physics!==undefined&&Meta.physics!==null&&Meta.physics.body!==undefined){
+      if(Meta.graphics!==null&&Meta.graphics.mesh!==undefined&&Meta.physics!==undefined&&Meta.physics!==null&&Meta.physics.body!==undefined){
         Meta.graphics.mesh.position.copy( Meta.physics.body.getPosition() );
         Meta.graphics.mesh.quaternion.copy( Meta.physics.body.getQuaternion() );
       }else{

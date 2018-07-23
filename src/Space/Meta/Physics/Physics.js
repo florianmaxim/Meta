@@ -35,6 +35,7 @@ class Body {
             rot: [this.rotation.x,this.rotation.y,this.rotation.z],
             
             move: props!==undefined&&props.move!==undefined?props.move:true,
+            
             density: 1,
             friction: 0.2,
             restitution: 0.2,

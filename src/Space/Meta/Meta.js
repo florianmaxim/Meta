@@ -58,6 +58,7 @@ export default class Meta {
       this.physics = props!==undefined&&props.physics!==undefined?props.physics:new Physics(props)
       
       //Start Presence
+      if(this.graphics)
       Space.get().add(this);
 
       //Start Existence

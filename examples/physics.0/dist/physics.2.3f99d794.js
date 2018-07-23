@@ -42428,10 +42428,10 @@ exports.Projector = Projector;
 exports.CanvasRenderer = CanvasRenderer;
 exports.SceneUtils = SceneUtils;
 exports.LensFlare = LensFlare;
-},{}],20:[function(require,module,exports) {
+},{}],22:[function(require,module,exports) {
 module.exports = {
   "name": "meta-client",
-  "version": "0.0.0-c29",
+  "version": "0.0.0-c32",
   "description": "Meta.js (Client)",
   "homepage": "https://metajs.org",
   "repository": {
@@ -42534,7 +42534,7 @@ exports.default = {
         }
     }
 };
-},{"./package.json":20}],23:[function(require,module,exports) {
+},{"./package.json":22}],24:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42563,7 +42563,7 @@ function log(msg) {
 
   if (mode) console.log(' %c [Meta][' + name + '] - ' + msg, style);
 }
-},{"../../config":5}],24:[function(require,module,exports) {
+},{"../../config":5}],25:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -42591,7 +42591,7 @@ var isMobile = {
 };
 
 exports.default = isMobile;
-},{}],30:[function(require,module,exports) {
+},{}],32:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42705,7 +42705,7 @@ var PointerLockControls = function () {
 
 exports.default = PointerLockControls;
 ;
-},{"three":3}],25:[function(require,module,exports) {
+},{"three":3}],26:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -43349,7 +43349,7 @@ var DesktopDeviceController = function () {
 }();
 
 exports.default = DesktopDeviceController;
-},{"../../../../config":5,"../../../Utilities/log":23,"three":3,"./Controls/PointerLockControls":30}],26:[function(require,module,exports) {
+},{"../../../../config":5,"../../../Utilities/log":24,"three":3,"./Controls/PointerLockControls":32}],27:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -43920,7 +43920,7 @@ var MobileDeviceController = function () {
 }();
 
 exports.default = MobileDeviceController;
-},{"../../../../config":5,"three":3,"../../../Utilities/log":23}],28:[function(require,module,exports) {
+},{"../../../../config":5,"three":3,"../../../Utilities/log":24}],30:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44040,7 +44040,7 @@ function ViveController(id) {
 
 ViveController.prototype = Object.create(_three.Object3D.prototype);
 ViveController.prototype.constructor = ViveController;
-},{"three":3}],29:[function(require,module,exports) {
+},{"three":3}],31:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44722,7 +44722,7 @@ var OBJLoader = function () {
 
 exports.default = OBJLoader;
 ;
-},{"three":3}],10:[function(require,module,exports) {
+},{"three":3}],11:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44825,7 +44825,7 @@ var Existence = function Existence(props) {
 };
 
 exports.default = Existence;
-},{}],22:[function(require,module,exports) {
+},{}],29:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -56621,7 +56621,7 @@ exports.JOINT_PRISMATIC = JOINT_PRISMATIC;
 exports.AABB_PROX = AABB_PROX;
 exports.printError = printError;
 exports.InfoDisplay = InfoDisplay;
-},{}],9:[function(require,module,exports) {
+},{}],10:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -56677,6 +56677,7 @@ var Body = function Body(props) {
         rot: [this.rotation.x, this.rotation.y, this.rotation.z],
 
         move: props !== undefined && props.move !== undefined ? props.move : true,
+
         density: 1,
         friction: 0.2,
         restitution: 0.2,
@@ -56740,7 +56741,7 @@ var Physics = function () {
 exports.default = Physics;
 exports.Body = Body;
 exports.World = World;
-},{"oimo":22}],7:[function(require,module,exports) {
+},{"oimo":29}],7:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -56824,7 +56825,7 @@ var Meta = function () {
     this.physics = props !== undefined && props.physics !== undefined ? props.physics : new _Physics2.default(props);
 
     //Start Presence
-    _Space2.default.get().add(this);
+    if (this.graphics) _Space2.default.get().add(this);
 
     //Start Existence
     if (this.existence.start === null && this.existence.end === null) _Space2.default.get().start(this);
@@ -57156,7 +57157,7 @@ var Meta = function () {
 }();
 
 exports.default = Meta;
-},{"../../../config":5,"../../Utilities/log":23,"three":3,"../Space":6,"./Existence/Existence":10,"./Graphics/Graphics":8,"./Physics/Physics":9}],8:[function(require,module,exports) {
+},{"../../../config":5,"../../Utilities/log":24,"three":3,"../Space":6,"./Existence/Existence":11,"./Graphics/Graphics":9,"./Physics/Physics":10}],9:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -57235,7 +57236,7 @@ var Graphics = function () {
 }();
 
 exports.default = Graphics;
-},{"three":3,"../Meta":7}],15:[function(require,module,exports) {
+},{"three":3,"../Meta":7}],16:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -57299,7 +57300,7 @@ var Cube = function Cube() {
 };
 
 exports.default = Cube;
-},{"three":3,"../Graphics":8,"../../../Space":6}],27:[function(require,module,exports) {
+},{"three":3,"../Graphics":9,"../../../Space":6}],28:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -57767,7 +57768,7 @@ var HeadMountedDisplay = function () {
 }();
 
 exports.default = HeadMountedDisplay;
-},{"../../../../config":5,"../../../Utilities/log":23,"three":3,"./Controls/ViveController":28,"./Loaders/OBJLoader":29,"../../Meta/Graphics/Geometries/Cube":15,"../../../Space/Space":6}],21:[function(require,module,exports) {
+},{"../../../../config":5,"../../../Utilities/log":24,"three":3,"./Controls/ViveController":30,"./Loaders/OBJLoader":31,"../../Meta/Graphics/Geometries/Cube":16,"../../../Space/Space":6}],23:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -57867,7 +57868,7 @@ var Device = function () {
 }();
 
 exports.default = Device;
-},{"../../Utilities/log":23,"../../Utilities/isMobile":24,"./Desktop/DesktopDeviceController":25,"./Mobile/MobileDeviceController":26,"./HeadMountedDisplay/HeadMountedDisplay":27}],6:[function(require,module,exports) {
+},{"../../Utilities/log":24,"../../Utilities/isMobile":25,"./Desktop/DesktopDeviceController":26,"./Mobile/MobileDeviceController":27,"./HeadMountedDisplay/HeadMountedDisplay":28}],6:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -58001,7 +58002,7 @@ var Space = function () {
     this.renderer.domElement.style.left = '0';
     this.renderer.domElement.style.top = '0';
 
-    this.renderer.animate(scope.render);
+    this.renderer.setAnimationLoop(scope.render);
 
     document.body.appendChild(this.renderer.domElement);
 
@@ -58114,8 +58115,8 @@ var Space = function () {
     }
   }, {
     key: 'start',
-    value: function start(Meta) {
-      this.container.add(Meta.graphics.mesh);
+    value: function start(meta) {
+      if (meta.graphics && meta.graphics.mesh) this.container.add(meta.graphics.mesh);
     }
   }, {
     key: 'remove',
@@ -58159,7 +58160,7 @@ var Space = function () {
       this.Meta.forEach(function (Meta, index) {
 
         //Physics
-        if (Meta.physics !== undefined && Meta.physics !== null && Meta.physics.body !== undefined) {
+        if (Meta.graphics !== null && Meta.graphics.mesh !== undefined && Meta.physics !== undefined && Meta.physics !== null && Meta.physics.body !== undefined) {
           Meta.graphics.mesh.position.copy(Meta.physics.body.getPosition());
           Meta.graphics.mesh.quaternion.copy(Meta.physics.body.getQuaternion());
         } else {
@@ -58277,7 +58278,7 @@ var timer = function timer(fun, interval) {
 
 exports.on = on;
 exports.timer = timer;
-},{"../../config":5,"three":3,"./Device/Device":21,"./Meta/Meta":7,"./Meta/Graphics/Graphics":8,"./Meta/Physics/Physics":9,"./Meta/Graphics/Geometries/Cube":15}],16:[function(require,module,exports) {
+},{"../../config":5,"three":3,"./Device/Device":23,"./Meta/Meta":7,"./Meta/Graphics/Graphics":9,"./Meta/Physics/Physics":10,"./Meta/Graphics/Geometries/Cube":16}],17:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -58330,7 +58331,7 @@ var Sphere = function Sphere() {
 };
 
 exports.default = Sphere;
-},{"three":3,"../Graphics":8,"../../../Space":6}],17:[function(require,module,exports) {
+},{"three":3,"../Graphics":9,"../../../Space":6}],18:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -58407,7 +58408,7 @@ var Cylinder = function Cylinder() {
 
 
 exports.default = Cylinder;
-},{"three":3,"../Graphics":8,"../../../Space":6}],18:[function(require,module,exports) {
+},{"three":3,"../Graphics":9,"../../../Space":6}],19:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -58459,7 +58460,7 @@ var Plane = function Plane() {
 };
 
 exports.default = Plane;
-},{"three":3,"../Graphics":8}],11:[function(require,module,exports) {
+},{"three":3,"../Graphics":9}],12:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -58520,7 +58521,7 @@ var Ground = function Ground(props) {
 };
 
 exports.default = Ground;
-},{"../Meta":7,"../Graphics/Graphics":8,"../Graphics/Geometries/Cube":15}],12:[function(require,module,exports) {
+},{"../Meta":7,"../Graphics/Graphics":9,"../Graphics/Geometries/Cube":16}],13:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -58578,7 +58579,7 @@ var Grid = function Grid(props) {
 };
 
 exports.default = Grid;
-},{"three":3,"../Meta":7,"../Graphics/Graphics":8,"../Graphics/Geometries/Plane":18}],13:[function(require,module,exports) {
+},{"three":3,"../Meta":7,"../Graphics/Graphics":9,"../Graphics/Geometries/Plane":19}],14:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -58634,7 +58635,7 @@ var Brick = function Brick() {
 };
 
 exports.default = Brick;
-},{"../Meta":7,"../Graphics/Graphics":8,"../Graphics/Geometries/Cube":15}],19:[function(require,module,exports) {
+},{"../Meta":7,"../Graphics/Graphics":9,"../Graphics/Geometries/Cube":16}],20:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -58669,7 +58670,7 @@ var Model = function Model(fileName) {
 };
 
 exports.default = Model;
-},{"three":3,"../../../Space":6,"../Graphics":8}],4:[function(require,module,exports) {
+},{"three":3,"../../../Space":6,"../Graphics":9}],4:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -58795,7 +58796,7 @@ exports.M = _Model2.default;
 exports.Ground = _Ground2.default;
 exports.Grid = _Grid2.default;
 exports.Brick = _Brick2.default;
-},{"../config":5,"./Space/Space":6,"./Space/Meta/Meta":7,"./Space/Meta/Graphics/Graphics":8,"./Space/Meta/Physics/Physics":9,"./Space/Meta/Existence/Existence":10,"./Space/Meta/Graphics/Geometries/Cube":15,"./Space/Meta/Graphics/Geometries/Sphere":16,"./Space/Meta/Graphics/Geometries/Cylinder":17,"./Space/Meta/Graphics/Geometries/Plane":18,"./Space/Meta/Custom/Ground":11,"./Space/Meta/Custom/Grid":12,"./Space/Meta/Custom/Brick":13,"./Space/Meta/Graphics/Geometries/Model":19}],2:[function(require,module,exports) {
+},{"../config":5,"./Space/Space":6,"./Space/Meta/Meta":7,"./Space/Meta/Graphics/Graphics":9,"./Space/Meta/Physics/Physics":10,"./Space/Meta/Existence/Existence":11,"./Space/Meta/Graphics/Geometries/Cube":16,"./Space/Meta/Graphics/Geometries/Sphere":17,"./Space/Meta/Graphics/Geometries/Cylinder":18,"./Space/Meta/Graphics/Geometries/Plane":19,"./Space/Meta/Custom/Ground":12,"./Space/Meta/Custom/Grid":13,"./Space/Meta/Custom/Brick":14,"./Space/Meta/Graphics/Geometries/Model":20}],2:[function(require,module,exports) {
 'use strict';
 
 var _three = require('three');
@@ -58866,7 +58867,7 @@ new _src.Meta({
                         },
                         position: {
                             x: i,
-                            y: 2,
+                            y: 5,
                             z: j
                         },
                         type: 'sphere',
@@ -58880,7 +58881,7 @@ new _src.Meta({
         }
     }
 });
-},{"three":3,"../../src":4}],31:[function(require,module,exports) {
+},{"three":3,"../../src":4}],33:[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 
@@ -58909,7 +58910,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '52027' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '65489' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
@@ -59050,5 +59051,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.parcelRequire, id);
   });
 }
-},{}]},{},[31,2], null)
-//# sourceMappingURL=/physics.38432a5f.map
+},{}]},{},[33,2], null)
+//# sourceMappingURL=/physics.2.3f99d794.map

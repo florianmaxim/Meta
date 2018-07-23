@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 
-import {Cube, Graphics, Physics, Body, Meta, on} from './src';
+import {Graphics, Physics, Body, Meta, on} from '../../src';
 
 let mode = false;
 
@@ -63,7 +63,7 @@ on('touch', (data) => {
                         },
                         position: {
                             x: i,
-                            y: 2,
+                            y: 5,
                             z: j
                         },
                         type: 'sphere',
