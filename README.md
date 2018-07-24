@@ -42,7 +42,7 @@ git clone https://github.com/florianmaxim/meta
 
 Select an example:
 ```script
-cd examples/basics.positioning
+cd examples/basics
 ```
 
 Run and open it in your browser:
