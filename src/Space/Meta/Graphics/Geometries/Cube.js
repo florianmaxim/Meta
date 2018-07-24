@@ -23,6 +23,18 @@ export default class Cube {
       z:props!==undefined&&props.position!==undefined&&props.position.z!==undefined?props.position.z:0
     };
 
+    this.rotation = {
+      x:props!==undefined&&props.rotation!==undefined&&props.rotation.x!==undefined?props.rotation.x:0,
+      y:props!==undefined&&props.rotation!==undefined&&props.rotation.y!==undefined?props.rotation.y:0,
+      z:props!==undefined&&props.rotation!==undefined&&props.rotation.z!==undefined?props.rotation.z:0
+    };
+
+    this.size = {
+      x:props!==undefined&&props.size!==undefined&&props.size.x!==undefined?props.size.x:0,
+      y:props!==undefined&&props.size!==undefined&&props.size.y!==undefined?props.size.y:0,
+      z:props!==undefined&&props.size!==undefined&&props.size.z!==undefined?props.size.z:0
+    };
+
     if(typeof(props)==='boolean') stop = props;
 
     let _width  = props.w||props.width||_DEFAULT.WIDTH;
@@ -40,8 +52,9 @@ export default class Cube {
     
     this.type     = 'box'; //This is for the physics. Doesnt really belong in here.
 
+    //alert(this.rotation.y)
     //Go recursive if stop is not set
-    return stop?this.geometry:new Graphics(this);
+    return stop?this.geometry:new Graphics(props);
 
   }
 

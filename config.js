@@ -28,8 +28,8 @@ export default {
             camera: {
                 position: {
                     x: 0,
-                    y: 0,
-                    z: 3.5
+                    y: 1,
+                    z: 5
                 }
             },  
             globe: {

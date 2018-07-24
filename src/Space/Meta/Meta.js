@@ -52,6 +52,7 @@ export default class Meta {
         z:props!==undefined&&props.position!==undefined&&props.position.z!==undefined?props.position.z:0
       };
 
+      //alert(this.rotation.y)
       //e,g,p existence, graphics, physics
       this.existence = props!==undefined&&props.existence!==undefined?props.existence:new Existence();
       this.graphics  = props!==undefined&&props.graphics!==undefined?props.graphics:new Graphics(props);
