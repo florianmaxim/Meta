@@ -5,6 +5,12 @@ import {CubeGeometry,
 
 import Meta from '../Meta';
 
+import * as THREE from 'three';
+
+import './loaders/GLTFLoader'
+
+let models = []
+
 export default class Graphics {
 
   constructor(props, stop = false){
@@ -33,8 +39,87 @@ export default class Graphics {
 
     this.type = props!==undefined&&props.type!==undefined?props.type:'box'
 
-    //this.setPosition();
-    //this.setRotation();
+    this.model = props.model!==undefined?props.model:undefined;
+
+    this.loader = undefined;
+
+    //Is it a model?
+    if(this.model !== undefined){
+
+    this.fileName = this.model;
+
+    //Add models default directory
+    this.model = 'models/'+this.model
+
+    this.mesh = new THREE.Object3D();
+    //this.mesh.position.copy(this.position)
+
+    const extentions = [
+      'gltf'
+    ]
+    const loaders = [
+      'new THREE.GLTFLoader()'
+    ]
+
+    const loadModel = (loader) => {
+      
+      loader.load( this.model, ( gltf ) => {
+
+        //Add model to scene
+        this.mesh.add( gltf.scene );
+        this.mesh.position.set(this.position)
+        console.log(this.position.x)
+
+
+        //Add model id to list
+        models.push([gltf.scene.id, this.model])
+
+        //Set size
+        //this.setSize()
+
+      })
+
+    }
+
+    //Check for provided file extention
+    if(this.model.includes(".")){
+
+      //Auto-detect loader by provided model file extension
+      let fileExtention;
+      
+      const pattern = /\.([0-9a-z]+)(?:[\?#]|$)/i;
+
+      const result = this.model.match(pattern);
+
+      fileExtention = result[1]
+
+      this.loader = eval(loaders[extentions.indexOf(fileExtention)])
+
+      loadModel(this.loader)
+
+      return
+    }
+
+    //Auto-detect loader by testing model file extension
+    console.log('auto dectect file extention')
+    extentions.forEach((extention) => {
+      if(this.loader!==undefined) return;
+      fetch(this.model+extention)
+      .then((response) => {
+        //Check if this file exists
+        if(response.status===200){
+          //Select loader
+          this.loader = eval(loaders[extentions.indexOf(extention)])
+          //Add extentions to model file path
+          this.model = this.model+'.'+extention
+          //load model
+          loadModel(this.loader)
+        }
+      })
+      .catch(error => console.error(error));
+    })
+
+    }
 
     if(stop)
       return this;
@@ -51,11 +136,13 @@ export default class Graphics {
       z:scale.z
     })
   }
+
   setPosition(position){
     position = position!==undefined?position:this.position
     this.mesh.position.copy(position)
     return this;
   }
+
   setRotation(rotation){
     rotation = rotation!==undefined?rotation:this.rotation
     this.mesh.rotation.x = rotation.x * (Math.PI / 180);
