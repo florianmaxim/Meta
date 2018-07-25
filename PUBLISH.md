@@ -1,5 +1,6 @@
 # 1.
-Test ALL examples.
+Test examples.
+Build docs.
 
 # 2.
 Change version.

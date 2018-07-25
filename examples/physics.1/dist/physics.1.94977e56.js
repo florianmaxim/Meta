@@ -42428,7 +42428,7 @@ exports.Projector = Projector;
 exports.CanvasRenderer = CanvasRenderer;
 exports.SceneUtils = SceneUtils;
 exports.LensFlare = LensFlare;
-},{}],19:[function(require,module,exports) {
+},{}],30:[function(require,module,exports) {
 module.exports = {
   "name": "meta-client",
   "version": "0.0.0-c32",
@@ -42497,8 +42497,8 @@ exports.default = {
             camera: {
                 position: {
                     x: 0,
-                    y: 0,
-                    z: 3.5
+                    y: 1,
+                    z: 5
                 }
             },
             globe: {
@@ -42534,7 +42534,7 @@ exports.default = {
         }
     }
 };
-},{"./package.json":19}],22:[function(require,module,exports) {
+},{"./package.json":30}],25:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42563,7 +42563,7 @@ function log(msg) {
 
   if (mode) console.log(' %c [Meta][' + name + '] - ' + msg, style);
 }
-},{"../../config":5}],23:[function(require,module,exports) {
+},{"../../config":5}],26:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -42591,7 +42591,7 @@ var isMobile = {
 };
 
 exports.default = isMobile;
-},{}],29:[function(require,module,exports) {
+},{}],34:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42705,7 +42705,7 @@ var PointerLockControls = function () {
 
 exports.default = PointerLockControls;
 ;
-},{"three":3}],24:[function(require,module,exports) {
+},{"three":3}],27:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -43349,7 +43349,7 @@ var DesktopDeviceController = function () {
 }();
 
 exports.default = DesktopDeviceController;
-},{"../../../../config":5,"../../../Utilities/log":22,"three":3,"./Controls/PointerLockControls":29}],25:[function(require,module,exports) {
+},{"../../../../config":5,"../../../Utilities/log":25,"three":3,"./Controls/PointerLockControls":34}],28:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -43920,7 +43920,7 @@ var MobileDeviceController = function () {
 }();
 
 exports.default = MobileDeviceController;
-},{"../../../../config":5,"three":3,"../../../Utilities/log":22}],27:[function(require,module,exports) {
+},{"../../../../config":5,"three":3,"../../../Utilities/log":25}],31:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44040,7 +44040,7 @@ function ViveController(id) {
 
 ViveController.prototype = Object.create(_three.Object3D.prototype);
 ViveController.prototype.constructor = ViveController;
-},{"three":3}],28:[function(require,module,exports) {
+},{"three":3}],32:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44722,7 +44722,7 @@ var OBJLoader = function () {
 
 exports.default = OBJLoader;
 ;
-},{"three":3}],10:[function(require,module,exports) {
+},{"three":3}],11:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44825,7 +44825,7 @@ var Existence = function Existence(props) {
 };
 
 exports.default = Existence;
-},{}],21:[function(require,module,exports) {
+},{}],33:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -56621,7 +56621,7 @@ exports.JOINT_PRISMATIC = JOINT_PRISMATIC;
 exports.AABB_PROX = AABB_PROX;
 exports.printError = printError;
 exports.InfoDisplay = InfoDisplay;
-},{}],9:[function(require,module,exports) {
+},{}],10:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -56739,7 +56739,7 @@ var Physics = function () {
 exports.default = Physics;
 exports.Body = Body;
 exports.World = World;
-},{"oimo":21}],7:[function(require,module,exports) {
+},{"oimo":33}],8:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -56817,6 +56817,7 @@ var Meta = function () {
       z: props !== undefined && props.position !== undefined && props.position.z !== undefined ? props.position.z : 0
     };
 
+    //alert(this.rotation.y)
     //e,g,p existence, graphics, physics
     this.existence = props !== undefined && props.existence !== undefined ? props.existence : new _Existence2.default();
     this.graphics = props !== undefined && props.graphics !== undefined ? props.graphics : new _Graphics2.default(props);
@@ -57155,7 +57156,7 @@ var Meta = function () {
 }();
 
 exports.default = Meta;
-},{"../../../config":5,"../../Utilities/log":22,"three":3,"../Space":6,"./Existence/Existence":10,"./Graphics/Graphics":8,"./Physics/Physics":9}],8:[function(require,module,exports) {
+},{"../../../config":5,"../../Utilities/log":25,"three":3,"../Space":7,"./Existence/Existence":11,"./Graphics/Graphics":9,"./Physics/Physics":10}],9:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -57186,17 +57187,30 @@ var Graphics = function () {
       z: props !== undefined && props.position !== undefined && props.position.z !== undefined ? props.position.z : 0
     };
 
+    this.rotation = {
+      x: props !== undefined && props.rotation !== undefined && props.rotation.x !== undefined ? props.rotation.x : 0,
+      y: props !== undefined && props.rotation !== undefined && props.rotation.y !== undefined ? props.rotation.y : 0,
+      z: props !== undefined && props.rotation !== undefined && props.rotation.z !== undefined ? props.rotation.z : 0
+    };
+
+    this.size = {
+      x: props !== undefined && props.size !== undefined && props.size.x !== undefined ? props.size.x : 0,
+      y: props !== undefined && props.size !== undefined && props.size.y !== undefined ? props.size.y : 0,
+      z: props !== undefined && props.size !== undefined && props.size.z !== undefined ? props.size.z : 0
+    };
+
     this.geometry = props !== undefined && props.geometry !== undefined && props.geometry !== true ? props.geometry : new _three.CubeGeometry();
     this.material = props !== undefined && props.material !== undefined && props.material !== true ? props.material : new _three.MeshPhongMaterial({ color: Math.random() * 0xffffff, side: _three.DoubleSide });
     this.mesh = props !== undefined && props.mesh !== undefined && props.mesh !== true ? props.mesh : new _three.Mesh(this.geometry, this.material);
 
     this.type = props !== undefined && props.type !== undefined ? props.type : 'box';
 
-    this.setPosition();
+    //this.setPosition();
+    //this.setRotation();
 
     if (stop) return this;
 
-    return new _Meta2.default({ graphics: this, position: this.position });
+    return new _Meta2.default({ graphics: this, position: this.position, rotation: this.rotation, size: this.size });
   }
 
   _createClass(Graphics, [{
@@ -57220,7 +57234,9 @@ var Graphics = function () {
     key: 'setRotation',
     value: function setRotation(rotation) {
       rotation = rotation !== undefined ? rotation : this.rotation;
-      this.mesh.rotation.copy(rotation);
+      this.mesh.rotation.x = rotation.x * (Math.PI / 180);
+      this.mesh.rotation.y = rotation.y * (Math.PI / 180);
+      this.mesh.rotation.z = rotation.z * (Math.PI / 180);
       return this;
     }
   }, {
@@ -57234,7 +57250,7 @@ var Graphics = function () {
 }();
 
 exports.default = Graphics;
-},{"three":3,"../Meta":7}],14:[function(require,module,exports) {
+},{"three":3,"../Meta":8}],16:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -57276,6 +57292,18 @@ var Cube = function Cube() {
     z: props !== undefined && props.position !== undefined && props.position.z !== undefined ? props.position.z : 0
   };
 
+  this.rotation = {
+    x: props !== undefined && props.rotation !== undefined && props.rotation.x !== undefined ? props.rotation.x : 0,
+    y: props !== undefined && props.rotation !== undefined && props.rotation.y !== undefined ? props.rotation.y : 0,
+    z: props !== undefined && props.rotation !== undefined && props.rotation.z !== undefined ? props.rotation.z : 0
+  };
+
+  this.size = {
+    x: props !== undefined && props.size !== undefined && props.size.x !== undefined ? props.size.x : 0,
+    y: props !== undefined && props.size !== undefined && props.size.y !== undefined ? props.size.y : 0,
+    z: props !== undefined && props.size !== undefined && props.size.z !== undefined ? props.size.z : 0
+  };
+
   if (typeof props === 'boolean') stop = props;
 
   var _width = props.w || props.width || _DEFAULT.WIDTH;
@@ -57293,12 +57321,13 @@ var Cube = function Cube() {
 
   this.type = 'box'; //This is for the physics. Doesnt really belong in here.
 
+  //alert(this.rotation.y)
   //Go recursive if stop is not set
-  return stop ? this.geometry : new _Graphics2.default(this);
+  return stop ? this.geometry : new _Graphics2.default(props);
 };
 
 exports.default = Cube;
-},{"three":3,"../Graphics":8,"../../../Space":6}],26:[function(require,module,exports) {
+},{"three":3,"../Graphics":9,"../../../Space":7}],29:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -57766,7 +57795,7 @@ var HeadMountedDisplay = function () {
 }();
 
 exports.default = HeadMountedDisplay;
-},{"../../../../config":5,"../../../Utilities/log":22,"three":3,"./Controls/ViveController":27,"./Loaders/OBJLoader":28,"../../Meta/Graphics/Geometries/Cube":14,"../../../Space/Space":6}],20:[function(require,module,exports) {
+},{"../../../../config":5,"../../../Utilities/log":25,"three":3,"./Controls/ViveController":31,"./Loaders/OBJLoader":32,"../../Meta/Graphics/Geometries/Cube":16,"../../../Space/Space":7}],24:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -57866,7 +57895,7 @@ var Device = function () {
 }();
 
 exports.default = Device;
-},{"../../Utilities/log":22,"../../Utilities/isMobile":23,"./Desktop/DesktopDeviceController":24,"./Mobile/MobileDeviceController":25,"./HeadMountedDisplay/HeadMountedDisplay":26}],6:[function(require,module,exports) {
+},{"../../Utilities/log":25,"../../Utilities/isMobile":26,"./Desktop/DesktopDeviceController":27,"./Mobile/MobileDeviceController":28,"./HeadMountedDisplay/HeadMountedDisplay":29}],7:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -58276,7 +58305,7 @@ var timer = function timer(fun, interval) {
 
 exports.on = on;
 exports.timer = timer;
-},{"../../config":5,"three":3,"./Device/Device":20,"./Meta/Meta":7,"./Meta/Graphics/Graphics":8,"./Meta/Physics/Physics":9,"./Meta/Graphics/Geometries/Cube":14}],15:[function(require,module,exports) {
+},{"../../config":5,"three":3,"./Device/Device":24,"./Meta/Meta":8,"./Meta/Graphics/Graphics":9,"./Meta/Physics/Physics":10,"./Meta/Graphics/Geometries/Cube":16}],17:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -58329,7 +58358,7 @@ var Sphere = function Sphere() {
 };
 
 exports.default = Sphere;
-},{"three":3,"../Graphics":8,"../../../Space":6}],16:[function(require,module,exports) {
+},{"three":3,"../Graphics":9,"../../../Space":7}],18:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -58406,7 +58435,7 @@ var Cylinder = function Cylinder() {
 
 
 exports.default = Cylinder;
-},{"three":3,"../Graphics":8,"../../../Space":6}],17:[function(require,module,exports) {
+},{"three":3,"../Graphics":9,"../../../Space":7}],19:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -58458,7 +58487,7 @@ var Plane = function Plane() {
 };
 
 exports.default = Plane;
-},{"three":3,"../Graphics":8}],11:[function(require,module,exports) {
+},{"three":3,"../Graphics":9}],12:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -58519,7 +58548,7 @@ var Ground = function Ground(props) {
 };
 
 exports.default = Ground;
-},{"../Meta":7,"../Graphics/Graphics":8,"../Graphics/Geometries/Cube":14}],12:[function(require,module,exports) {
+},{"../Meta":8,"../Graphics/Graphics":9,"../Graphics/Geometries/Cube":16}],13:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -58577,7 +58606,7 @@ var Grid = function Grid(props) {
 };
 
 exports.default = Grid;
-},{"three":3,"../Meta":7,"../Graphics/Graphics":8,"../Graphics/Geometries/Plane":17}],13:[function(require,module,exports) {
+},{"three":3,"../Meta":8,"../Graphics/Graphics":9,"../Graphics/Geometries/Plane":19}],14:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -58633,7 +58662,7 @@ var Brick = function Brick() {
 };
 
 exports.default = Brick;
-},{"../Meta":7,"../Graphics/Graphics":8,"../Graphics/Geometries/Cube":14}],18:[function(require,module,exports) {
+},{"../Meta":8,"../Graphics/Graphics":9,"../Graphics/Geometries/Cube":16}],20:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -58668,7 +58697,7 @@ var Model = function Model(fileName) {
 };
 
 exports.default = Model;
-},{"three":3,"../../../Space":6,"../Graphics":8}],4:[function(require,module,exports) {
+},{"three":3,"../../../Space":7,"../Graphics":9}],4:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -58794,7 +58823,7 @@ exports.M = _Model2.default;
 exports.Ground = _Ground2.default;
 exports.Grid = _Grid2.default;
 exports.Brick = _Brick2.default;
-},{"../config":5,"./Space/Space":6,"./Space/Meta/Meta":7,"./Space/Meta/Graphics/Graphics":8,"./Space/Meta/Physics/Physics":9,"./Space/Meta/Existence/Existence":10,"./Space/Meta/Graphics/Geometries/Cube":14,"./Space/Meta/Graphics/Geometries/Sphere":15,"./Space/Meta/Graphics/Geometries/Cylinder":16,"./Space/Meta/Graphics/Geometries/Plane":17,"./Space/Meta/Custom/Ground":11,"./Space/Meta/Custom/Grid":12,"./Space/Meta/Custom/Brick":13,"./Space/Meta/Graphics/Geometries/Model":18}],2:[function(require,module,exports) {
+},{"../config":5,"./Space/Space":7,"./Space/Meta/Meta":8,"./Space/Meta/Graphics/Graphics":9,"./Space/Meta/Physics/Physics":10,"./Space/Meta/Existence/Existence":11,"./Space/Meta/Graphics/Geometries/Cube":16,"./Space/Meta/Graphics/Geometries/Sphere":17,"./Space/Meta/Graphics/Geometries/Cylinder":18,"./Space/Meta/Graphics/Geometries/Plane":19,"./Space/Meta/Custom/Ground":12,"./Space/Meta/Custom/Grid":13,"./Space/Meta/Custom/Brick":14,"./Space/Meta/Graphics/Geometries/Model":20}],2:[function(require,module,exports) {
 'use strict';
 
 var _three = require('three');
@@ -58896,7 +58925,7 @@ new _src.Meta({
 
     });
 });
-},{"three":3,"../../src":4}],36:[function(require,module,exports) {
+},{"three":3,"../../src":4}],35:[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 
@@ -58925,7 +58954,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '49559' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '57253' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
@@ -59066,5 +59095,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.parcelRequire, id);
   });
 }
-},{}]},{},[36,2], null)
+},{}]},{},[35,2], null)
 //# sourceMappingURL=/physics.1.94977e56.map
