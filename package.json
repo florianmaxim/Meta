@@ -1,6 +1,6 @@
 {
   "name": "meta-client",
-  "version": "0.0.0-c32",
+  "version": "0.0.0-c33",
   "description": "Meta.js (Client)",
   "homepage": "https://metajs.org",
   "repository": {
@@ -21,10 +21,13 @@
     "babel-core": "^6.26.3",
     "babel-preset-env": "^1.6.0",
     "documentation": "^6.1.0",
+    "eslint": "^6.6.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
     "npx": "^10.0.1"
   },
   "dependencies": {
     "oimo": "^1.0.9",
-    "three": "^0.94.0"
+    "three": "^0.110.0"
   }
 }
